@@ -13,6 +13,7 @@ local config = {
             theme = "dropdown",
             selection_caret = "󰐊 ",
             prompt_prefix = "   ",
+            follow = true,
         },
         buffers = {
             theme = "dropdown",
@@ -23,6 +24,7 @@ local config = {
             theme = "dropdown",
             selection_caret = "󰐊 ",
             prompt_prefix = "   ",
+            follow = true,
         },
     },
     extensions = {

@@ -85,9 +85,29 @@ local user_interface = {
     "preservim/tagbar"
 }
 
+local temp = {
+    'mfussenegger/nvim-dap-python',
+    {
+        "linux-cultist/venv-selector.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig", 
+            "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
+            { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+        },
+        lazy = false,
+        branch = "regexp", -- This is the regexp branch, use this for the new version
+        config = function()
+            require("venv-selector").setup()
+        end,
+        keys = {
+            { ",v", "<cmd>VenvSelect<cr>" },
+        },
+    },
+}
+
 require("lazy").setup({
     combine({
-	syntax,
+        syntax,
         quality_of_life,
         file_navigation,
         package_management,
@@ -96,5 +116,6 @@ require("lazy").setup({
         code_navigation,
         themes,
         user_interface,
+        temp
     })
 })
