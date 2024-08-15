@@ -73,45 +73,57 @@ function Notification(n) {
         })),
     })
 
-    const event_box = Widget.EventBox(
-        {
-            attribute: { id: n.id },
-            on_primary_click: n.dismiss,
+
+    const box = Widget.Box({
+            class_name: `notification ${n.urgency}`,
+            vertical: true,
         },
-        Widget.Box(
-            {
-                class_name: `notification ${n.urgency}`,
-                vertical: true,
-            },
-            Widget.Box([
-                icon,
-                Widget.Box(
-                    { vertical: true },
-                    title,
-                    body,
-                ),
-            ]),
-            actions,
-        ),
+        Widget.Box([
+            icon,
+            Widget.Box(
+                { vertical: true },
+                title,
+                body,
+            ),
+        ]),
+        actions,
     )
 
     const revealer = Widget.Revealer({
         revealChild: false,
+        visible: true,
         transitionDuration: 250,
         transition: 'crossfade',
-        child: event_box,
+        // pass_through: true,
+        child: box,
         setup: (self) => {
+            self.visible = true
             Utils.timeout(100, () => {
                 self.revealChild = true
             })
 
             Utils.timeout(3000, () => {
                 self.revealChild = false
+                Utils.timeout(300, () => {
+                    self.visible = false
+                })
             })
         }
     })
+    
+    const event_box = Widget.EventBox({
+        attribute: { id: n.id },
+        // on_primary_click: n.dismiss,
+        child: revealer,
+        on_primary_click: (self) => {
+            self.child.revealChild = false
+            Utils.timeout(300, () => {
+                n.dismiss
+            })
+        },
+    })
 
-    return revealer
+    return event_box
 }
 
 export function NotificationPopups(monitor = 0) {
