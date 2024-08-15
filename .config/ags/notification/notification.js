@@ -104,7 +104,7 @@ function Notification(n) {
 
             Utils.timeout(3000, () => {
                 self.revealChild = false
-                Utils.timeout(300, () => {
+                Utils.timeout(250, () => {
                     self.visible = false
                 })
             })
@@ -117,8 +117,9 @@ function Notification(n) {
         child: revealer,
         on_primary_click: (self) => {
             self.child.revealChild = false
-            Utils.timeout(300, () => {
+            Utils.timeout(250, () => {
                 n.dismiss
+                self.child.visible = false
             })
         },
     })
