@@ -12,18 +12,18 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 [[blocks.segments]]
   type = 'text'
   style = 'plain'
-  background = 'transparent'
-  foreground = 'green'
-  template = '<b>[{{ if .Env.TMUX }}TMUX{{ else }}TERM{{ end }}]</> '
+  background = 'green'
+  foreground = 'black'
+  template = '<b> {{ if .Env.TMUX }}TMUX{{ else }}TERM{{ end }} </>'
 
 [[blocks.segments]]
   type = 'path'
   style = 'plain'
   background = 'transparent'
   foreground = 'yellow'
-  template = '<b>{{ .Path }}</> '
+  template = '<b> {{ .Path }}</> '
 [blocks.segments.properties]
-  style = 'mixed'
+  style = 'unique'
 
 [[blocks.segments]]
   type = 'git'
@@ -34,8 +34,6 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   branch_icon = ' '
   commit_icon = '@'
   fetch_status = true
-
-
 
 [[blocks]]
   type = 'prompt'
