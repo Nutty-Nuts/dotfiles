@@ -126,7 +126,7 @@ $profile-picutre: url('./assets/frieren.png');
 
 
 window.notification-popups box.notifications {
-    padding: .5em;
+    // padding: .5em;
 }
 
 .notify-icon {
@@ -136,25 +136,31 @@ window.notification-popups box.notifications {
 }
 
 .notify-icon image {
-    font-size: 58px;
+    font-size: 72px;
     /* to center the icon */
-    margin: 5px;
-    color: $white;
+    margin: -16px;
+    margin-left: -2px;
+    // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
 }
 
 .notify-icon box {
     min-width: 68px;
     min-height: 68px;
-    border-radius: 7px;
+    border-radius: 0.25em;
+    // background: rgba(0,0,0,0.1);
+    // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .notification {
-    min-width: 400px;
+    min-width: 24em;
     border-radius: 11px;
-    padding: 1em;
-    margin: .5em;
+    padding: 1.25em;
+    margin: 0.5em;
     border: 1px solid $base-color;
     background-color: $base-color;
+    opacity: 0.85;
+    border: 0.05em solid $gray;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
 }
 
 .notification.critical {
@@ -163,11 +169,12 @@ window.notification-popups box.notifications {
 
 .title {
     color: $white;
+    font-weight: bolder;
     font-size: 1.25em;
 }
 
 .body {
-    color: $white;
+    color: $lighter-gray;
 }
 
 .actions .action-button {
@@ -243,20 +250,32 @@ window.notification-popups box.notifications {
 }
 
 .player scale.position trough {
-    padding: 0.41em;
+    padding: 0.31em;
     border-radius: 1em;
-    min-height: 8px;
+    // min-height: 8px;
     background: $base-color-darker;
+    // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    // border: 1.5px solid $dark-gray;
 }
 
 .player scale.position highlight {
     background-color: $white;
-    padding: 0.3em;
+    // padding: 0.2em;
+    margin: 0.2em;
+
 }
 
 .player scale.position slider {
-    all: unset;
+    // all: unset;
+    box-shadow: none;
+    transition: none;
+    margin: -1px;
+    min-width: 12px;
+    min-height: 12px;
+    background: $white;
+    background: transparent;
 }
+
 
 .player button {
     min-height: 1em;

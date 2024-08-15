@@ -2,7 +2,7 @@
 // Gtk.Settings.get_default().gtk_enable_animations = false
 
 const notifications = await Service.import("notifications")
-notifications.popupTimeout = 3000
+notifications.popupTimeout = 4000
 notifications.forceTimeout = false;
 notifications.clearDelay = 100;
 
@@ -73,16 +73,10 @@ function Notification(n) {
         })),
     })
 
-    return Widget.EventBox(
+    const event_box = Widget.EventBox(
         {
             attribute: { id: n.id },
             on_primary_click: n.dismiss,
-            // setup: () => {
-            //     Utils.timeout(3000, () => {
-            //         print('dismiss')
-            //         n.dismiss()
-            //     })
-            // }
         },
         Widget.Box(
             {
@@ -100,6 +94,24 @@ function Notification(n) {
             actions,
         ),
     )
+
+    const revealer = Widget.Revealer({
+        revealChild: false,
+        transitionDuration: 250,
+        transition: 'crossfade',
+        child: event_box,
+        setup: (self) => {
+            Utils.timeout(100, () => {
+                self.revealChild = true
+            })
+
+            Utils.timeout(3000, () => {
+                self.revealChild = false
+            })
+        }
+    })
+
+    return revealer
 }
 
 export function NotificationPopups(monitor = 0) {
@@ -111,6 +123,7 @@ export function NotificationPopups(monitor = 0) {
 
     function onNotified(_, /** @type {number} */ id) {
         const n = notifications.getNotification(id)
+        console.log(n)
         if (n)
             // list.children = [Notification(n), ...list.children]
             list.child = Notification(n)
@@ -125,7 +138,7 @@ export function NotificationPopups(monitor = 0) {
 
     return Widget.Window({
         monitor,
-        name: `notifications${monitor}`,
+        name: `notifications`,
         class_name: "notification-popups",
         anchor: ['top'],
         child: Widget.Box({
