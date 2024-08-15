@@ -1,0 +1,44 @@
+export function NetowrkOld() {
+    const hover = Variable(false)
+
+    /* Reactivity utilities for ags widgets */
+    const icon = Utils.merge([network.wifi.bind('strength'), hover.bind()], (strength, hover) => {
+        if (hover)
+            return `${strength}`
+        if (!hover)
+            return strength <= 0.25 
+            ? '󰤟' : strength <= 0.50
+            ? '󰤢' : strength <= 0.75
+            ? '󰤥' : '󰤨'
+    })
+    const classes = (prefix) => Utils.merge([network.wifi.bind('strength'), hover.bind()], (strength, hover) => {
+        var networkState = strength <= 0.33 
+            ? 'critical' : strength <= 0.66
+            ? 'warn' : 'good'
+        var hoverState = hover ? 'hover' : ''
+        return `${prefix} ${networkState} ${hoverState}`
+    })
+
+    /* Ags child widgets for parent widget */
+    const indicator = Widget.Label({
+        class_name: classes('circular-progress-status network font'),
+        label: icon
+    })
+    const indicatorContainer = Widget.EventBox({
+        child: indicator, 
+
+        on_hover: () => hover.value = true,
+        on_hover_lost: () => hover.value = false,
+    })
+
+    /* Ags widget for battery module */
+    return Widget.CircularProgress({
+        class_name: classes("circular-progress-status"),
+        tooltip_text: ssid,
+        value: strength,
+        rounded: true,
+        startAt: 0.75,
+        child: indicatorContainer     
+    })
+}
+

@@ -1,0 +1,63 @@
+import GLib from 'gi://GLib'
+const audio = await Service.import('audio')
+
+const SpeakerVolumeSlider = Widget.Slider({
+    class_name: 'speaker-osd-slider unset',
+    hexpand: true,
+    draw_value: false,
+    value: audio['speaker'].bind('volume'),
+    on_change: ({ value }) => audio['speaker'].volume = value,
+})
+
+const SpeakerIcon = Widget.Label({
+    class_name: 'speaker-osd-icon',
+    label: '󰖀'
+})
+
+const SpeakerOSD = Widget.Box({
+    class_name: 'speaker-osd-container',
+    children: [
+        SpeakerIcon,
+        SpeakerVolumeSlider
+    ]
+})
+
+export const SpeakerOSDWindow = Widget.Window({
+    class_name: 'speaker-osd-window',
+    name: 'speakerosd',
+    visible: false,
+    layer: 'overlay',
+    child: SpeakerOSD,
+    anchor: ["bottom"]
+})
+
+let hideTimeoutId;
+
+var volume;
+var init = false;
+
+Utils.watch(
+    () => audio.speaker.volume, [audio.speaker], // Pass audio.speaker as an array
+    () => {
+        if (!init) {
+            volume = audio.speaker.volume
+            init = true
+        }
+        else {
+            if (volume != audio.speaker.volume) {
+                volume = audio.speaker.volume
+                SpeakerOSDWindow.visible = true;
+
+                if (hideTimeoutId !== null) {
+                    GLib.source_remove(hideTimeoutId);
+                }
+                // Hide the window after 2 seconds
+                hideTimeoutId = Utils.timeout(2000, () => {
+                    SpeakerOSDWindow.visible = false;
+                });
+            }
+        }
+      console.log(audio.speaker.volume)
+      // Clear the previous timeout
+    }
+);

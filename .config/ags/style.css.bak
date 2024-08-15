@@ -1,0 +1,167 @@
+
+* {
+    font-family: JetBrainsMono NerdFont Mono;
+}
+
+.bar-window {
+    background: rgba(0,0,0,0);
+}
+.bar-container {
+    background: #303030;
+    padding: 0.25em;
+    /* margin: 0.5em; */
+    /* border-radius: 0.75em; */
+}
+
+.launcher {
+    min-width: 1px;
+    min-height: 1px;
+    margin: 4px;
+    padding: 0px 8px 0px 8px;
+    background: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.workspaces {
+    min-width: 1px;
+    min-height: 1px;
+    padding: 12px 8px 12px 16px;
+    margin: 4px 0px 4px 0px;
+    border-radius: 8px;
+    background: black;
+    font-size: 0;
+}
+.workspace {
+    min-width: 1px;
+    min-height: 1px;
+    margin-right: 8px;
+    padding: 0px 6px 0px 6px;
+    transition: all 0.1s ease;
+}
+
+.workspace.focused {
+    background: #b8bb26;
+    min-width: 9px;
+    transition: all 0.1s ease;
+}
+
+.date {
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 0px 16px 0px 16px;
+    margin: 4px 0px 4px 0px;
+    background: #595959;
+    border-radius: 1em;
+}
+.hour {
+    color: #fabd2f;
+}
+
+.user {
+    border-radius: 4em;
+    background-image: url("./assets/frieren.png");
+    background-size: cover;
+    border: 2px solid white;
+}
+
+.network {
+    font-size: 6px;
+    margin: 4px;
+    background: #595959;
+}
+.network.icon {
+    font-size: 20px;
+    background: rgba(0,0,0,0);
+}
+
+.battery-font {
+    font-size: 12px;
+    font-weight: bolder;
+}
+.battery-good, .battery-charging, .battery-low, .battery-critical {
+    background: #595959;
+    font-size: 6px;
+    margin: 4px;
+    transition: color 0.5s ease;
+}
+.battery-good  {
+    color: #b8bb26;
+}
+.battery-charging {
+    color: #83a598;
+}
+.battery-low {
+    color: #fabd2f;
+}
+.battery-critical {
+    color: #fb4934;
+}
+
+.audio-container {
+    background: black;
+    padding: 0em 0.5em 0em 0.5em;
+    border-radius: 0.75em;
+}
+.audio {
+    background: #595959;
+    font-size: 6px;
+    min-width: 3.5em;
+    min-height: 3.5em;
+    transition: all 0.25s ease;
+}
+.audio-icon {
+    font-size: 18px;
+}
+.hover {
+    background: #303030;
+    color: #595959;
+    transition: all 0.25s ease;
+}
+.hover.is_muted {
+    color: #9d0006
+}
+.is_muted {
+    color: #fb4934;
+}
+.audio.is_muted{
+    background: #8f4346;
+}
+.audio.hover.is_muted{
+    background: #6b3133;
+}
+.audio-volume {
+    color: rgba(0,0,0,0);
+    font-size: 14px;
+    font-weight: bolder;
+}
+.audio-volume.hover {
+    color: white;
+    background: rgba(0,0,0,0);
+    transition: all 0.25s ease;
+}
+
+.volume-font {
+    font-size: 12px;
+    font-weight: bolder;
+}
+.volume-safe, .volume-warn, .volume-danger {
+    background: #595959;
+    font-size: 8px;
+    transition: color 0.5s ease;
+}
+.volume-safe {
+    color: #b8bb26;
+}
+.volume-warn {
+    color: #fabd2f;
+}
+.volume-danger {
+    color: #fb4934;
+}
+
+
+.horizontal {
+    padding: 2px;
+}

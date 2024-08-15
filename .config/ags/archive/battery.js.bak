@@ -1,0 +1,51 @@
+export function BatteryOld() {
+    const hover = Variable(false)
+
+    /* Reactivity utilities for ags widgets */
+    const classes = (prefix) => Utils.merge([battery.bind('percent'), battery.bind("charging")], (percent, charging) => {
+        const batteryState = percent <= 25
+            ? 'critical' : percent <= 50
+            ? 'warning' 
+            : 'good'
+        return `${prefix} ${charging ? 'charging' : batteryState}`
+    })
+    const tooltip = Utils.merge([battery.bind('percent'), battery.bind("charging")], (percent, charging) => {
+        if (charging)
+            return `󱐋 ${percent}% Charging`
+        if (!charging)
+            return percent <= 25
+            ? `󰁼 ${percent}% Critical` : percent <= 50
+            ? `󰁾 ${percent}% Low` 
+            : `󰁹 ${percent}% Good` 
+    }) 
+    const icon = Utils.merge ([battery.bind('percent'), battery.bind("charging"), hover.bind()], (percent, charging, hover) => {
+        if (hover)
+            return `${Math.round(percent)}`
+        if (!hover)
+            return charging ? '󱐋' : '󰁹'
+    })
+
+    /* Ags child widgets for parent widget */
+    const indicator = Widget.Label({
+        class_name: 'battery-font',
+        label: icon
+    })
+    const indicatorContainer = Widget.EventBox({
+        class_name: classes('circular-progress-status font'),
+        child: indicator,
+
+        on_hover: () => hover.value = true,
+        on_hover_lost: () => hover.value = false
+    })
+
+    /* Ags widget for battery module */
+    return Widget.CircularProgress({
+        tooltip_text: tooltip,
+        class_name: classes('circular-progress-status'),
+        value: battery.bind("percent").as(p => p > 0 ? p / 100 : 0),
+        rounded: true, 
+        startAt: 0.75,
+        child: indicatorContainer
+    })
+}
+

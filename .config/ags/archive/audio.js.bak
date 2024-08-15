@@ -1,0 +1,46 @@
+
+export function BrightnessOld() {
+    const hover = Variable(false)
+    const show_value = Utils.merge([brightness.bind('screen_value'), hover.bind()], (screen_value, hover) => {
+        return `${hover ? Math.round(screen_value * 100) : ''}`
+    })
+    const classes = (prefix) => Utils.merge([hover.bind()], (hover) => {
+        return `${prefix} ${hover ? 'hover' : ''}`
+    })
+
+    const indicator = Widget.Label({
+        class_name: "quick-control icon",
+        label: "󰌵"
+    })    
+    const value = Widget.CircularProgress({
+        value: brightness.bind('screen-value'),
+        class_name: classes('quick-control circular-progress-slider'),
+        rounded: true,
+        startAt: 0.75,
+        child: Widget.EventBox({
+            child: Widget.Label({
+                class_name: classes("circular-progress-slider font"),
+                label: show_value
+            }),
+            on_scroll_up: () => {
+                brightness.screen_value += -0.015
+            },
+            on_scroll_down: () => {
+                brightness.screen_value += 0.015
+            },
+            on_hover: () => {
+                hover.value = true
+            },
+            on_hover_lost: () => {
+                hover.value = false
+            }
+        }),
+    })
+    return Widget.Box({
+        spacing: 6,
+        children: [
+            indicator,
+            value
+        ]
+    })
+}

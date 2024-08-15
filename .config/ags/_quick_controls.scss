@@ -1,0 +1,41 @@
+$states: hover, is_muted, hover\.is_muted;
+
+.quick-control {
+    border-radius: 1em;
+    &.hover {
+        background: $dark-gray;
+        color: $light-gray;
+    }
+    &.is_muted {
+        color: $red;
+        background: $dark-red;
+    }
+    &.is_muted.hover {
+        color: $dark-red;
+        background: $darker-red;
+    }
+
+    &.icon {
+        color: $white;
+    }
+    &.icon.is_muted {
+        color: $red;
+    }
+
+    &.font {
+        color: $white;
+    }
+     
+    transition: color 0.25s ease, background 0.25s ease;
+}
+
+.quick-control {
+    @each $state in $states {
+        &.#{$state} {
+            transition: color 0.25s ease, background 0.25s ease;
+        }
+        &.#{$state}.font, &.icon.#{$state} {
+            background: rgba(0,0,0,0);
+        }
+    }
+}

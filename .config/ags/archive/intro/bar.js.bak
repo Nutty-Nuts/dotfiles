@@ -1,0 +1,76 @@
+const label = Widget.Label({ // label widget
+    label: 'some example content'
+})
+
+const bar = Widget.Window({ // window widget
+    name: 'bar',
+    anchor: ['top', 'left', 'right'],
+    child: label
+})
+
+
+function Bar(monitor) { // reusable widgets via functions
+    const label = Widget.Label({
+        label: 'some example content'
+    })
+
+    // date and time
+    Utils.interval(1000, () => {
+        label.label = Utils.exec('date')
+    })
+
+    return Widget.Window({
+        monitor,
+        name: `bar${monitor}`,
+        anchor: ['top', 'left', 'right'],
+        child: label
+    })
+}
+
+const date = Variable('', {
+    poll: [1000, 'date']
+})
+
+const variable = Variable(0)
+variable.connect('changed', ({ value }) => {
+    print(`variable changed to ${value}`)
+})
+
+const pactl = Variable({ count: 0, msg: '' }, {
+    listen: ['pactl subscribe', (msg) => ({
+        count: pactl.value.count + 1,
+        msg: msg,
+    })],
+})
+
+pactl.connect('changed', ({ value }) => {
+    print(value.msg, value.count)
+})
+
+const label = Widget.Label({
+    label: pactl.bind().as(({ count, msg }) => {
+        return `${msg} ${count}`
+    }),
+})
+
+label.connect('notify::label', ({ label }) => {
+    print('label changed to ', label)
+})
+
+const Bar = (monitor) => Widget.Window({
+    monitor,
+    name: 'bar',
+    anchor: ['top', 'left', 'right'],
+    // child: Widget.Label({ label: date.bind() })
+    // child: Widget.Label({
+    //     label: variable.bind().as(v => `value: ${v}`)
+    // })
+    child: label
+})
+
+App.config({
+    windows: [
+        // window definitions 
+        Bar(0)
+    ]
+})

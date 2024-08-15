@@ -1,0 +1,86 @@
+$image: url('./assets/KanagawaWave.jpg');
+
+.launcher-button {
+    margin: 4px;
+    padding: 0px 8px 0px 8px;
+    background: $black;
+    color: $white;
+    font-size: 20px;
+    font-weight: bold;
+}
+.launcher-button:active {
+    background: $gray;
+    color: $black
+}
+.launcher-title {
+    color: $white;
+    font-weight: bold;
+    font-size: 16px;
+}
+.launcher-container {
+    margin: 1em;
+    background: $base-color;
+    opacity: 0.90;
+    border: 0.05em solid $gray;
+    border-radius: 1em;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
+}
+.launcher-contents {
+    margin: 1em 0em;
+}
+.launcher-entry {
+    box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.3);
+    background-color: $base-color-darker;
+    border: 0.1em solid $dark-gray;
+    padding: 1.40em;
+    // margin: 1em 1em;
+    border-radius: 0.5em;
+    font-size: 14px;
+}
+
+.launcher-entry > * {
+    color: $white;
+}
+.launcher-item {
+    background-color: $gray;
+    border: 0.2em solid $gray;
+    border-radius: 0.5em;
+    color: $white;
+    padding: 0.6em;
+    margin: 0em 1em;
+    transition: all 0.25s ease;
+
+    & .title {
+        font-size: 16px;
+    }
+}
+.launcher-item.focused {
+    background: #928374;
+    color: $black;
+    border: 0.2em solid $green;
+    transition: all 0.25s ease;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+.launcher-entry.focused {
+    background-color: $base-color-darker;
+    border: 0.2em solid $green;
+    padding: 1.30em;
+    color: $white;
+}
+
+scrollbar, scrollbar * {
+    all: unset
+}
+
+scrollbar slider {
+    background: $gray;
+    min-height: 0.1em;
+    min-width: 0.4em;
+    border-radius: 0.25em;
+
+    &:hover {
+        background: $light-gray;
+    }
+}
+

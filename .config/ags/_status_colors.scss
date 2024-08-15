@@ -1,0 +1,15 @@
+.charging, .loading {
+    color: $blue
+}
+
+.good {
+    color: $green;
+}
+
+.warning {
+    color: $yellow;
+}
+
+.critical, .error{
+    color: $red;
+}

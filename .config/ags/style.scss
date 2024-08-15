@@ -1,0 +1,365 @@
+
+@import 'gruvbox_dark';
+@import 'status_colors';
+
+@import 'circular_progress';
+
+@import 'workspace';
+@import 'quick_controls';
+
+// component size definitions
+
+/* user profile picture */
+$profile-picutre: url('./assets/frieren.png');
+
+* {
+    font-family: JetBrainsMono NerdFont Mono;
+}
+
+.resizeable {
+    min-width: 0px;
+    min-height: 0px;
+}
+
+.bar-container {
+    background: $base-color;
+    padding: 0.25em;
+    opacity: 0.85;
+}
+
+.user {
+    border-radius: 4em;
+    background-image: $profile-picutre;
+    background-size: cover;
+    border: 2px solid $white;
+}
+
+.time {
+    color: $white;
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 0px 0px 0px 1rem;
+    margin: 4px 0px 4px 0px;
+    background: $gray;
+    border-radius: 1em;
+}
+.hour {
+    color: $yellow;
+    font-weight: bolder;
+}
+
+.time-component {
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    font-weight: bolder;
+    background: $gray;
+    padding: 0rem 1rem 0rem 0.5rem;
+    border-radius: 2em 0.75em 0.75em 2em;
+    margin: 0.3em 0.2em;
+}
+.time-suffix {
+    font-size: 11px;
+    font-weight: bolder;
+    color: $yellow;
+    padding-bottom: 4px;
+    padding-left: 0.4rem;
+    margin: 0em 0.2em;
+}
+
+.date-component {
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    font-weight: bolder;
+    background: $gray;
+    padding: 0rem 0.5rem 0rem 1rem;
+    border-radius: 0.75em 2em 2em 0.75em;
+    margin: 0.3rem 0.2rem;
+}
+.date-suffix {
+    font-size: 11px;
+    font-weight: bolder;
+    color: $green;
+    padding-bottom: 5px;
+    padding-right: 0.4rem;
+    margin: 0.2rem;
+}
+.date {
+    color: $green;
+}
+
+.system-tray {
+    background: $black;
+    padding: 0em 0.5em 0em 0.5em;
+    border-radius: 0.75em;
+}
+.system-tray-item {
+    color: #fff;
+    background: $gray;
+    border-radius: 0.25em;
+    padding: 4px;
+    margin: 8px 0px;
+}
+
+.tool-tray {
+    background: $black;
+    padding: 0.25em 0.45em;
+    margin: 0.25em 0em;
+    border-radius: 0.5em;
+}
+.tool-tray-item {
+    color: $white;
+    background: $gray;
+    border-radius: 0.25em;
+    padding: 0em 0.5em;
+    margin: 2px 0px
+}
+
+.quick-controls-container {
+    background: $black;
+    padding: 0em 0.5em 0em 0.5em;
+    border-radius: 0.75em;
+}
+
+.unset {
+    all: unset;
+}
+
+
+window.notification-popups box.notifications {
+    padding: .5em;
+}
+
+.notify-icon {
+    min-width: 68px;
+    min-height: 68px;
+    margin-right: 1em;
+}
+
+.notify-icon image {
+    font-size: 58px;
+    /* to center the icon */
+    margin: 5px;
+    color: $white;
+}
+
+.notify-icon box {
+    min-width: 68px;
+    min-height: 68px;
+    border-radius: 7px;
+}
+
+.notification {
+    min-width: 400px;
+    border-radius: 11px;
+    padding: 1em;
+    margin: .5em;
+    border: 1px solid $base-color;
+    background-color: $base-color;
+}
+
+.notification.critical {
+    border: 1px solid lightcoral;
+}
+
+.title {
+    color: $white;
+    font-size: 1.25em;
+}
+
+.body {
+    color: $white;
+}
+
+.actions .action-button {
+    margin: 0 0.4em;
+    margin-top: 0.8em;
+}
+
+.actions .action-button:first-child {
+    margin-left: 0;
+}
+
+.actions .action-button:last-child {
+    margin-right: 0;
+}
+
+.player {
+    padding: 10px;
+    min-width: 350px;
+}
+
+.player .img {
+    min-width: 100px;
+    min-height: 100px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 13px;
+    margin-right: 1em;
+}
+
+.player {
+    min-width: 25em;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+    background: $base-color;
+    color: $white;
+    border-radius: 0.75em;
+    padding: 1.25em;
+    margin: 0.5em;
+    opacity: 0.85;
+    border: 0.05em solid $gray;
+    // shape-rendering: crispEdges;
+}
+.player .img {
+    border-radius: 0.25em;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
+    padding: 0.4em;
+}
+
+.player .icon {
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.player .title {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    color: $yellow;
+}
+
+.player .artist {
+    font-size: 1.1em;
+    color: $light-gray;
+}
+
+.player .position, .player .length {
+    color: $light-gray;
+}
+
+.player scale.position {
+    padding: 0;
+    margin: 1em 0em 0.5em 0em;
+}
+
+.player scale.position trough {
+    padding: 0.41em;
+    border-radius: 1em;
+    min-height: 8px;
+    background: $base-color-darker;
+}
+
+.player scale.position highlight {
+    background-color: $white;
+    padding: 0.3em;
+}
+
+.player scale.position slider {
+    all: unset;
+}
+
+.player button {
+    min-height: 1em;
+    min-width: 1em;
+    padding: .3em;
+    background: $base-color-darker;
+    color: $white;
+}
+
+.player button:hover {
+    background: $white;
+    color: $base-color-darker;
+}
+
+.player button.play-pause {
+    margin: 0 .3em;
+}
+
+.player-container {
+    background: rgba(0,0,0,0);
+}
+
+.toggle-media-player-icon {
+    margin: 0.4rem 0rem;
+    box-shadow: 0px 0px 6px -3px rgba(0, 0, 0, 1);
+    background: $gray;
+    border: 1.5px solid $dark-gray;
+    border-radius: 0.4rem;
+}
+.toggle-media-player {
+    background: $base-color;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
+    border: 1.5px solid $black;
+    background-size: cover;
+    border-radius: 0.2em;
+    min-width: 1.05em;
+    margin: 0.1em;
+
+    &:hover {
+        opacity: 0.75;
+    }
+    &:active {
+        opacity: 0.5;
+        transition: background 0.1s;
+    }
+}
+
+// .picker {
+//     color: $white;
+//     font-size: 16px;
+//     font-weight: bolder;
+//     margin: 4px 0px 4px 0px;
+//     background: $gray;
+//     border-radius: 1em;
+
+//     &:hover {
+//         background: $light-gray;
+//     }
+//     &:active {
+//         background: $lighter-gray;
+//         color: $black;
+//         transition: background 0.1s;
+//     }
+// }
+
+.speaker-osd-window {
+    background: rgba(0,0,0,0);
+}
+
+.speaker-osd-container {
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
+    min-width: 10em;
+    min-height: 0.5em;
+    padding: 1em;
+    margin: 1em;
+    margin-bottom: 10em;
+    background: $base-color;
+    border: 0.05em solid $gray;
+    border-radius: 0.75em;
+    opacity: 0.85;
+}
+
+.speaker-osd-icon {
+    margin-right: 0.5em;
+    color: $white;
+    font-size: 18px;
+    text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.speaker-osd-slider {
+    & trough {
+        min-height: 0.5em;
+        border-radius: 1em;
+        padding: 0.4em;
+        background: $base-color-darker;
+        border: 0.05em solid $dark-gray;
+    }
+    & slider {
+        all: unset;
+    }
+    & highlight {
+        background: $white;
+    }
+}
+
+@import 'launcher'

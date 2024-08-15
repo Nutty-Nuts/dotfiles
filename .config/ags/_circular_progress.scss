@@ -1,0 +1,42 @@
+$circular-progress-small: 3.5em;
+$circular-progress: 4em;
+
+@mixin _width-small {
+    min-width: $circular-progress-small;
+    min-height: $circular-progress-small;
+}
+
+@mixin _width-regular {
+    min-width: $circular-progress;
+    min-height: $circular-progress;
+}
+
+.circular-progress-status {
+    font-size: 6px;
+    margin: 4px;
+    background: $gray;
+}
+.circular-progress-status.font {
+    font-size: 12px;
+    font-weight: bold;
+    background: rgba(0,0,0,0);
+}
+.circular-progress-status.font.network {
+    font-size: 20px;
+}
+.circular-progress-status.font.network.hover {
+    font-size: 12px;
+}
+
+.circular-progress-slider {
+    @include _width-small;
+    color: $white;
+    font-size: 6px;
+    background: $gray;
+}
+.circular-progress-slider.font {
+    color: $white;
+    font-size: 14px;
+    font-weight: bold;
+    background: rgba(0,0,0,0);
+}
