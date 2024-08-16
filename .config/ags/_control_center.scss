@@ -1,0 +1,15 @@
+window .control-center {
+
+}
+
+.control-center .container {
+    background: $base-color;
+
+    padding: 1em;
+    margin: 0.5em;
+
+    border-radius: 0.75em;
+    border: 0.05em solid $gray;
+    
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}

@@ -3,6 +3,7 @@ import { Launcher } from './launcher/launcher.js'
 import { NotificationPopups } from './notification/notification.js'
 import { MediaPlayer } from './media_player/media_player.js'
 import { SpeakerOSDWindow } from './osd/speaker_osd.js'
+import { ControlCenter } from './popups/control_center.js'
 
 const scss = `${App.configDir}/style.scss`
 const css = `${App.configDir}/style.css`
@@ -33,6 +34,7 @@ App.config({
         Launcher,
         MediaPlayer,
         NotificationPopups(),
-        SpeakerOSDWindow
+        SpeakerOSDWindow,
+        ControlCenter()
     ]
 })
