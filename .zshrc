@@ -63,7 +63,7 @@ alias ls='ls --color'
 alias :q="exit"
 alias ff="fastfetch --logo ~/.local/assets/fastfetch_logo.jpg"
 alias nv="nvim"
-alias nvi='nvim $(fzf -m --preview="highlight -O ansi --force {}")'
+alias nvf='nvim $(fzf -m --preview="highlight -O ansi --force {}")'
 
 alias killurself='poweroff'
 
