@@ -75,6 +75,10 @@ stowdots() {
     cd -
 }
 
+nvgit() {
+    nvim +"Neogit $1"
+}
+
 nvimc() {
     rm ~/.local/state/nvim/swap/*.swn
     rm ~/.local/state/nvim/swap/*.swo
