@@ -10,7 +10,7 @@ end
 
 local syntax = {
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    "nvim-treesitter/nvim-treesitter-context",
+        "nvim-treesitter/nvim-treesitter-context",
 }
 
 local quality_of_life = {
@@ -34,6 +34,14 @@ local file_navigation = {
 local package_management = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    {
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
+    }
 }
 
 local language_server_protocol = {
@@ -103,6 +111,10 @@ local temp = {
             { ",v", "<cmd>VenvSelect<cr>" },
         },
     },
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    }
 }
 
 require("lazy").setup({
