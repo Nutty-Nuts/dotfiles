@@ -32,8 +32,7 @@ export function Battery() {
         }
         if (percent <= 25) {
             self.label = '󰁼'
-            return
-        } 
+            return } 
         if (percent <= 50) {
             self.label = '󰁾'
             return
@@ -93,6 +92,22 @@ export function Battery() {
             battery_icon.visible = true
             battery_label.visible = false
         }
+    }).hook(battery, (self) => {
+        let time_remaining = battery['time_remaining']
+        let seconds = time_remaining % 60
+        let minutes = (time_remaining - seconds) / 60 % 60
+        let hours = Math.floor((time_remaining - (minutes * 60)) / 60 / 60)
+        let message = ''
+
+        // console.log(time_remaining, 'time_remaining', seconds, minutes, hours)
+        if (battery.charging) {
+            message = 'Until Fully Charged'
+        }
+        else {
+            message = 'Remaining'
+        }
+
+        self.tooltip_text = `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${message}`
     })
 
     return battery_event_box

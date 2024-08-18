@@ -4,9 +4,12 @@ import { NotificationPopups } from './notification/notification.js'
 import { MediaPlayer } from './media_player/media_player.js'
 import { SpeakerOSDWindow } from './osd/speaker_osd.js'
 import { ControlCenter } from './popups/control_center.js'
+import { battery_events } from './events/battery_events.js'
 
 const scss = `${App.configDir}/style.scss`
 const css = `${App.configDir}/style.css`
+
+battery_events()
 
 Utils.exec(`sassc ${scss} ${css}`)
 App.resetCss()

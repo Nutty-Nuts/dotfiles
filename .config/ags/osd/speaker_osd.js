@@ -12,34 +12,6 @@ const SpeakerVolumeSlider = Widget.Slider({
     // value: slider_value.bind(),
     on_change: ({ value }) => audio['speaker'].volume = value,
 })
-// .hook(audio, (self) => {
-//     let volume = audio['speaker'].volume 
-//     let gap = Math.abs(slider_value.value - volume)
-//     console.log('gap', gap)
-
-//     if (transition_interval != null) {
-//         GLib.source_remove(transition_interval)
-//     }
-
-//     if (self.value < volume) {
-//         let transition_interval = Utils.interval(50, () => {
-//             self.value = Math.min(self.value + 0.01, volume) 
-
-//             if (self.value == volume) {
-//                 GLib.source_remove(transition_interval)
-//             }
-//         })
-//     }
-//     if (self.value > volume) {
-//         let transition_interval = Utils.interval(50, () => {
-//             self.value = Math.max(self.value - 0.01, volume) 
-
-//             if (self.value == volume) {
-//                 GLib.source_remove(transition_interval)
-//             }
-//         })
-//     }
-// })
 
 const SpeakerIcon = Widget.Label({
     class_name: 'speaker-osd-icon',
@@ -78,6 +50,7 @@ Utils.watch(
         }
         else {
             if (volume != audio.speaker.volume) {
+                Utils.execAsync('play ~/.config/ags/assets/sfx/ocean/audio-volume-change.oga')
                 volume = audio.speaker.volume
                 SpeakerOSDWindow.visible = true;
 
