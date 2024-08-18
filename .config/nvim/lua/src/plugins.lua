@@ -10,7 +10,7 @@ end
 
 local syntax = {
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-        "nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/nvim-treesitter-context",
 }
 
 local quality_of_life = {
@@ -41,7 +41,7 @@ local package_management = {
             "williamboman/mason.nvim",
             "nvimtools/none-ls.nvim",
         },
-    }
+    },
 }
 
 local language_server_protocol = {
@@ -70,7 +70,7 @@ local code_navigation = {
 
 local themes = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true,}
+    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 }
 
 local user_interface = {
@@ -90,17 +90,22 @@ local user_interface = {
         ---@type ibl.config
         opts = {},
     },
-    "preservim/tagbar"
+    "preservim/tagbar",
 }
 
 local temp = {
-    'mfussenegger/nvim-dap-python',
+    "mfussenegger/nvim-dap-python",
     {
         "linux-cultist/venv-selector.nvim",
         dependencies = {
-            "neovim/nvim-lspconfig", 
-            "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
-            { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+            "neovim/nvim-lspconfig",
+            "mfussenegger/nvim-dap",
+            "mfussenegger/nvim-dap-python", --optional
+            {
+                "nvim-telescope/telescope.nvim",
+                branch = "0.1.x",
+                dependencies = { "nvim-lua/plenary.nvim" },
+            },
         },
         lazy = false,
         branch = "regexp", -- This is the regexp branch, use this for the new version
@@ -112,9 +117,21 @@ local temp = {
         },
     },
     {
-        'stevearc/conform.nvim',
+        "stevearc/conform.nvim",
         opts = {},
-    }
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim", -- required
+            "sindrets/diffview.nvim", -- optional - Diff integration
+
+            -- Only one of these is needed, not both.
+            "nvim-telescope/telescope.nvim", -- optional
+            "ibhagwan/fzf-lua", -- optional
+        },
+        config = true,
+    },
 }
 
 require("lazy").setup({
@@ -128,6 +145,6 @@ require("lazy").setup({
         code_navigation,
         themes,
         user_interface,
-        temp
-    })
+        temp,
+    }),
 })
