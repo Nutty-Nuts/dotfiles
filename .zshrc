@@ -58,7 +58,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# aliases
+# aliases for commands
 alias ls='ls --color'
 alias :q="exit"
 alias ff="fastfetch --logo ~/.local/assets/fastfetch_logo.jpg"
