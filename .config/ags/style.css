@@ -1,5 +1,10 @@
-.charging, .loading {
+.charging,
+.loading {
   color: #83a598; }
+
+.empty,
+.disabled {
+  color: #A89984; }
 
 .good {
   color: #b8bb26; }
@@ -7,7 +12,8 @@
 .warning {
   color: #fabd2f; }
 
-.critical, .error {
+.critical,
+.error {
   color: #fb4934; }
 
 .circular-progress-status {
