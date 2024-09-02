@@ -8,26 +8,29 @@ $image: url('./assets/KanagawaWave.jpg');
     font-size: 20px;
     font-weight: bold;
 }
+
 .launcher-button:active {
     background: $gray;
     color: $black
 }
+
 .launcher-title {
     color: $white;
     font-weight: bold;
     font-size: 16px;
 }
+
 .launcher-container {
     margin: 1em;
     background: $base-color;
-    opacity: 0.90;
     border: 0.05em solid $gray;
     border-radius: 1em;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5);
 }
+
 .launcher-contents {
     margin: 1em 0em;
 }
+
 .launcher-entry {
     box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.3);
     background-color: $base-color-darker;
@@ -38,9 +41,10 @@ $image: url('./assets/KanagawaWave.jpg');
     font-size: 14px;
 }
 
-.launcher-entry > * {
+.launcher-entry>* {
     color: $white;
 }
+
 .launcher-item {
     background-color: $gray;
     border: 0.2em solid $gray;
@@ -54,6 +58,7 @@ $image: url('./assets/KanagawaWave.jpg');
         font-size: 16px;
     }
 }
+
 .launcher-item.focused {
     background: #928374;
     color: $black;
@@ -62,6 +67,7 @@ $image: url('./assets/KanagawaWave.jpg');
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
     font-weight: bold;
 }
+
 .launcher-entry.focused {
     background-color: $base-color-darker;
     border: 0.2em solid $green;
@@ -69,7 +75,8 @@ $image: url('./assets/KanagawaWave.jpg');
     color: $white;
 }
 
-scrollbar, scrollbar * {
+scrollbar,
+scrollbar * {
     all: unset
 }
 
@@ -83,4 +90,3 @@ scrollbar slider {
         background: $light-gray;
     }
 }
-

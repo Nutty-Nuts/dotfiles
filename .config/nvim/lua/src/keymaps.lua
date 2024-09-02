@@ -1,11 +1,11 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local function bind_keys(mode, table)
     for keys, command in pairs(table) do
-        vim.keymap.set(mode, keys, command[1], {noremap = true})
+        vim.keymap.set(mode, keys, command[1], { noremap = true })
     end
-    require('which-key').register(mode)
+    require("which-key").register(mode)
 end
 
 local normal_mode = {
@@ -28,12 +28,16 @@ local normal_mode = {
 
     ["<leader>tb"] = { ":TagbarToggle<CR>", "Toggle Tagbar" },
 
-    ["zr"] = { require('ufo').openAllFolds, "Open All Folds"},
-    ["zm"] = { require('ufo').closeAllFolds, "Close All Folds"},
+    ["<leader>gg"] = { ":Neogit<CR>", "Toggle Tagbar" },
+    ["<leader>gc"] = { ":Neogit commit<CR>", "Toggle Tagbar" },
+    ["<leader>gd"] = { ":Neogit diff<CR>", "Toggle Tagbar" },
 
-    ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Line" },
+    ["zr"] = { require("ufo").openAllFolds, "Open All Folds" },
+    ["zm"] = { require("ufo").closeAllFolds, "Close All Folds" },
 
-    ["<Esc>"] = {":nohlsearch<CR>"},
+    -- ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Line" },
+
+    ["<Esc>"] = { ":nohlsearch<CR>" },
 
     ["<C-h>"] = { "<C-w><C-h>", "Focus Left Window" },
     ["<C-l>"] = { "<C-w><C-l>", "Focus Right Window" },
@@ -42,7 +46,7 @@ local normal_mode = {
 }
 
 local visual_mode = {
-    ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Lines" },
+    -- ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Lines" },
 
     ["<C-d>"] = { "<C-d>zz" },
     ["K"] = { ":m '<-2<CR>gv=gv" },
@@ -50,15 +54,15 @@ local visual_mode = {
 }
 
 local terminal_mode = {
-    ['<Esc><Esc>'] = { '<C-\\><C-n>', 'Exit terminal mode' }
+    ["<Esc><Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
 }
 
 bind_keys("n", normal_mode)
 bind_keys("v", visual_mode)
 bind_keys("t", terminal_mode)
 
-require('which-key').register({
-	["<leader>f"] = { name = "+fuzzy finder" },
-	["<leader>d"] = { name = "+debugging" },
-	["<leader>l"] = { name = "+lsp actions" },
+require("which-key").register({
+    ["<leader>f"] = { name = "+fuzzy finder" },
+    ["<leader>d"] = { name = "+debugging" },
+    ["<leader>l"] = { name = "+lsp actions" },
 })

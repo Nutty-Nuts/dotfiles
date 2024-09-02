@@ -15,7 +15,7 @@ local syntax = {
 
 local quality_of_life = {
     "tpope/vim-sleuth",
-    "tpope/vim-commentary",
+    -- "tpope/vim-commentary",
     "abecodes/tabout.nvim",
     "windwp/nvim-autopairs",
     "norcalli/nvim-colorizer.lua",
@@ -94,6 +94,8 @@ local user_interface = {
 }
 
 local temp = {
+    "ThePrimeagen/vim-be-good",
+    { "echasnovski/mini.nvim", version = false },
     "mfussenegger/nvim-dap-python",
     {
         "linux-cultist/venv-selector.nvim",

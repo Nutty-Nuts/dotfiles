@@ -1,8 +1,8 @@
 // import Gtk from 'gi://Gtk'
 // Gtk.Settings.get_default().gtk_enable_animations = false
 
-const notifications = await Service.import("notifications")
-notifications.popupTimeout = 4000
+const notifications = await Service.import("notifications");
+notifications.popupTimeout = 5000;
 notifications.forceTimeout = false;
 notifications.clearDelay = 100;
 
@@ -10,23 +10,19 @@ notifications.clearDelay = 100;
 function NotificationIcon({ app_entry, app_icon, image }) {
     if (image) {
         return Widget.Box({
-            css: `background-image: url("${image}");`
-                + "background-size: contain;"
-                + "background-repeat: no-repeat;"
-                + "background-position: center;",
-        })
+            css:
+                `background-image: url("${image}");` + "background-size: contain;" + "background-repeat: no-repeat;" + "background-position: center;",
+        });
     }
 
-    let icon = "dialog-information"
-    if (Utils.lookUpIcon(app_icon))
-        icon = app_icon
+    let icon = "dialog-information";
+    if (Utils.lookUpIcon(app_icon)) icon = app_icon;
 
-    if (app_entry && Utils.lookUpIcon(app_entry))
-        icon = app_entry
+    if (app_entry && Utils.lookUpIcon(app_entry)) icon = app_entry;
 
     return Widget.Box({
         child: Widget.Icon(icon),
-    })
+    });
 }
 
 /** @param {import('resource:///com/github/Aylur/ags/service/notifications.js').Notification} n */
@@ -35,7 +31,7 @@ function Notification(n) {
         vpack: "start",
         class_name: "notify-icon",
         child: NotificationIcon(n),
-    })
+    });
 
     const title = Widget.Label({
         class_name: "title",
@@ -47,7 +43,7 @@ function Notification(n) {
         wrap: true,
         label: n.summary.trim(),
         use_markup: true,
-    })
+    });
 
     const body = Widget.Label({
         class_name: "body",
@@ -58,114 +54,104 @@ function Notification(n) {
         label: n.body.trim(),
         truncate: "end",
         wrap: true,
-    })
+    });
 
     const actions = Widget.Box({
         class_name: "actions",
-        children: n.actions.map(({ id, label }) => Widget.Button({
-            class_name: "action-button",
-            on_clicked: () => {
-                n.invoke(id)
-                n.dismiss()
-            },
-            hexpand: true,
-            child: Widget.Label(label),
-        })),
-    })
+        homogeneous: true,
+        children: n.actions.map(({ id, label }) =>
+            Widget.Button({
+                class_name: "action-button",
+                on_clicked: () => {
+                    n.invoke(id);
+                    n.dismiss();
+                },
+                hexpand: true,
+                child: Widget.Label(label),
+            })
+        ),
+    });
 
-
-    const box = Widget.Box({
+    const box = Widget.Box(
+        {
             class_name: `notification ${n.urgency}`,
             vertical: true,
         },
-        Widget.Box([
-            icon,
-            Widget.Box(
-                { vertical: true },
-                title,
-                body,
-            ),
-        ]),
-        actions,
-    )
+        Widget.Box([icon, Widget.Box({ vertical: true }, title, body)]),
+        actions
+    );
 
     const revealer = Widget.Revealer({
         revealChild: false,
         visible: true,
         transitionDuration: 250,
-        transition: 'crossfade',
+        transition: "crossfade",
         // pass_through: true,
         child: box,
         setup: (self) => {
-            self.visible = true
+            self.visible = true;
             Utils.timeout(100, () => {
-                self.revealChild = true
-            })
+                self.revealChild = true;
+            });
 
-            Utils.timeout(3000, () => {
-                self.revealChild = false
+            Utils.timeout(4500, () => {
+                self.revealChild = false;
                 Utils.timeout(250, () => {
-                    self.visible = false
-                })
-            })
-        }
-    })
-    
+                    self.visible = false;
+                });
+            });
+        },
+    });
+
     const event_box = Widget.EventBox({
         attribute: { id: n.id },
         // on_primary_click: n.dismiss,
         child: revealer,
         on_primary_click: (self) => {
-            self.child.revealChild = false
+            self.child.revealChild = false;
             Utils.timeout(250, () => {
-                n.dismiss
-                self.child.visible = false
-            })
+                n.dismiss;
+                self.child.visible = false;
+            });
         },
-    })
+    });
 
-    return event_box
+    return event_box;
 }
 
 export function NotificationPopups(monitor = 0) {
-    console.log(notifications)
+    console.log(notifications);
     const list = Widget.Box({
         vertical: true,
         // children: notifications.popups.map(Notification),
-    })
+    });
 
     function onNotified(_, /** @type {number} */ id) {
-        const n = notifications.getNotification(id)
-        console.log(n)
+        const n = notifications.getNotification(id);
+        console.log(n);
         if (n)
             // list.children = [Notification(n), ...list.children]
-            list.child = Notification(n)
+            list.child = Notification(n);
     }
 
     function onDismissed(_, /** @type {number} */ id) {
-        list.children.find(n => n.attribute.id === id)?.destroy()
+        list.children.find((n) => n.attribute.id === id)?.destroy();
     }
 
-    list.hook(notifications, onNotified, "notified")
-        .hook(notifications, onDismissed, "dismissed")
+    list.hook(notifications, onNotified, "notified").hook(notifications, onDismissed, "dismissed");
 
     return Widget.Window({
         monitor,
         name: `notifications`,
         class_name: "notification-popups",
-        anchor: ['top'],
+        anchor: ["top"],
         child: Widget.Box({
             css: "min-width: 2px; min-height: 2px;",
-            class_name: "notifications",
+            class_name: "notifications transparent shadow",
             vertical: true,
             child: list,
-
-            /** this is a simple one liner that could be used instead of
-                hooking into the 'notified' and 'dismissed' signals.
-                but its not very optimized becuase it will recreate
-                the whole list everytime a notification is added or dismissed */
-            // children: notifications.bind('popups')
-            //     .as(popups => popups.map(Notification))
         }),
-    })
+    });
 }
+
+export const NotificationPopupLayer = NotificationPopups();

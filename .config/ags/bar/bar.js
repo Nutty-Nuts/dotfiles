@@ -1,13 +1,13 @@
-import { Battery } from './modules/battery.js'
-import { Date } from './modules/date.js'
-import { Workspaces } from './modules/workspaces.js'
-import { User } from './modules/user.js'
+import { Battery } from "./modules/battery.js";
+import { Date } from "./modules/date.js";
+import { Workspaces } from "./modules/workspaces.js";
+import { User } from "./modules/user.js";
 // import { NetworkOld } from './modules/network.js'
-import { Network } from './modules/network.js'
-import { SystemTray } from './modules/systemtray.js'
-import { Media } from './modules/media.js'
-import { ToolTray } from './modules/tool-tray.js'
-import { QuickControls } from './modules/quick_controls/quick_controls.js'
+import { Network } from "./modules/network.js";
+import { SystemTray } from "./modules/systemtray.js";
+import { Media } from "./modules/media.js";
+import { ToolTray } from "./modules/tool-tray.js";
+import { QuickControls } from "./modules/quick_controls/quick_controls.js";
 
 function Left() {
     return Widget.Box({
@@ -17,8 +17,8 @@ function Left() {
             Media(),
             ToolTray(),
             Workspaces(),
-        ]
-    })
+        ],
+    });
 }
 function Center() {
     return Widget.Box({
@@ -26,8 +26,8 @@ function Center() {
         children: [
             Date(),
             // Picker(),
-        ]
-    })
+        ],
+    });
 }
 function Right() {
     return Widget.Box({
@@ -39,30 +39,30 @@ function Right() {
                 children: [
                     SystemTray(),
                     // Audio(),
-                    QuickControls()
-                ]
+                    QuickControls(),
+                ],
             }),
             Battery(),
             // NetworkOld(),
             Network(),
             User(),
-        ]
-    })
+        ],
+    });
 }
 
 export function Bar(monitor = 0) {
-    const bar = Widget.Window({
+    return Widget.Window({
         monitor,
-        name: 'agsbar',
+        name: "agsbar",
         visible: true,
-        class_name: 'bar-window',
-        anchor: ['top', 'left', 'right'],
+        class_name: "bar-window",
+        anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Widget.CenterBox({
-            class_name: 'bar-container',
+            class_name: "bar-container transparent",
             start_widget: Left(),
             center_widget: Center(),
             end_widget: Right(),
-        })
-    })
+        }),
+    });
 }

@@ -9,5 +9,6 @@ require("conform").setup({
         javascript = { "prettierd" },
         rust = { "rustfmt" },
         python = { "autopep8" },
+        asm = { "asmfmt" },
     },
 })

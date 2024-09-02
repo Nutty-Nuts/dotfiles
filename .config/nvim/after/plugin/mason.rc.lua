@@ -5,7 +5,7 @@ local masonnull = require("mason-null-ls")
 mason.setup()
 masonlsp.setup({
     ensure_installed = {
-            "html",
+        "html",
         "lua_ls",
         "tsserver",
         "pyright",
@@ -17,7 +17,7 @@ masonlsp.setup({
         "bashls",
         "marksman",
         "cmake",
-        "asm_lsp"
+        "asm_lsp",
     },
 })
 
@@ -32,5 +32,6 @@ masonnull.setup({
         "beautysh",
         "clang_format",
         "cmake_format",
-    }
+        "asmfmt",
+    },
 })

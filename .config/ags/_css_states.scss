@@ -1,0 +1,17 @@
+.resizeable {
+    min-width: 0px;
+    min-height: 0px;
+}
+
+.unset {
+    all: unset;
+}
+
+.transparent {
+    opacity: 0.85;
+    // opacity: 1;
+}
+
+.shadow {
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}

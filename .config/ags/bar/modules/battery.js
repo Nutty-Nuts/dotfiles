@@ -9,6 +9,7 @@ function set_battery_state(widget, battery_state) {
         good: false,
         warning: false,
         critical: false,
+        suspend: false,
     };
     battery_states[battery_state] = true;
 
@@ -16,6 +17,7 @@ function set_battery_state(widget, battery_state) {
     widget.toggleClassName("good", battery_states["good"]);
     widget.toggleClassName("warning", battery_states["warning"]);
     widget.toggleClassName("critical", battery_states["critical"]);
+    widget.toggleClassName("suspend", battery_states["suspend"]);
 }
 
 export function Battery() {
@@ -38,7 +40,11 @@ export function Battery() {
             self.label = "󰁾";
             return;
         }
-        self.label = "󰁹";
+        if (percent <= 79) {
+            self.label = "󰁹";
+            return;
+        }
+        self.label = "󱞜";
     });
 
     const battery_label = Widget.Label({
@@ -78,7 +84,11 @@ export function Battery() {
             set_battery_state(self, "warning");
             return;
         }
-        set_battery_state(self, "good");
+        if (percent <= 79) {
+            set_battery_state(self, "good");
+            return;
+        }
+        set_battery_state(self, "suspend");
     });
 
     const battery_event_box = Widget.EventBox({

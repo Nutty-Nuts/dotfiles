@@ -50,7 +50,8 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -T --all -L 2 --colour=always --icons=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
@@ -59,18 +60,17 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 # aliases for commands
-alias ls='ls --color'
+alias ls='eza --all --icons=always'
 alias :q="exit"
 alias ff="fastfetch --logo ~/.local/assets/fastfetch_logo.jpg"
 alias nv="nvim"
-alias nvf='nvim $(fzf -m --preview="highlight -O ansi --force {}")'
-
-alias killurself='poweroff'
+# alias nvf='nvim $(fzf -m --preview="highlight -O ansi --force {}")'
+alias nvf='nvim $(fzf -m --preview="bat --style=numbers --theme=base16 --color=always {}")'
 
 # custom functions/commands
 stowdots() {
     cd ~/dotfiles
-    stow --adopt .
+    stow --verbose --adopt .
     echo "Created symlinks ~/dotfiles/* => ~/*"
     cd -
 }
@@ -106,4 +106,4 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=spinner:$color0C,hl:$color0D"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"\
-" --reverse"
+" --layout=reverse --highlight-line --border=rounded --prompt=▌ --header='fzf version: $(fzf --version)' --header-first --multi"

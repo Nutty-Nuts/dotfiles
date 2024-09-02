@@ -1,12 +1,12 @@
-const { query } = await Service.import("applications")
-const WINDOW_NAME = "applauncher"
+const { query } = await Service.import("applications");
+const WINDOW_NAME = "applauncher";
 
 function AppItem(app) {
     const button = Widget.Button({
         class_name: "unset launcher-item",
         on_clicked: () => {
-            App.closeWindow(WINDOW_NAME)
-            app.launch()
+            App.closeWindow(WINDOW_NAME);
+            app.launch();
         },
         attribute: { app },
         child: Widget.Box({
@@ -25,66 +25,67 @@ function AppItem(app) {
                 }),
             ],
         }),
-    })
+    });
 
     button.connect("focus-in-event", () => {
-        button.class_name = "unset launcher-item focused"
-    })
+        button.class_name = "unset launcher-item focused";
+    });
 
     button.connect("focus-out-event", () => {
-        button.class_name = "unset launcher-item"
-    })
+        button.class_name = "unset launcher-item";
+    });
 
-    return button
+    return button;
 }
 
 const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
     // list of application buttons
-    let applications = query("").map(AppItem)
+    let applications = query("").map(AppItem);
 
     // container holding the buttons
     const list = Widget.Box({
         vertical: true,
         children: applications,
         spacing,
-    })
+    });
 
     // repopulate the box, so the most frequent apps are on top of the list
     function repopulate() {
-        applications = query("").map(AppItem)
-        list.children = applications
+        applications = query("").map(AppItem);
+        list.children = applications;
     }
 
     // search entry
     const entry = Widget.Entry({
         hexpand: true,
-        placeholder_text: 'Search Application...',
+        placeholder_text: "Search Application...",
         class_name: "unset launcher-entry",
         css: `margin-bottom: ${spacing}px;`,
 
         // to launch the first item on Enter
         on_accept: () => {
             // make sure we only consider visible (searched for) applications
-        const results = applications.filter((item) => item.visible);
+            const results = applications.filter((item) => item.visible);
             if (results[0]) {
-                App.toggleWindow(WINDOW_NAME)
-                results[0].attribute.app.launch()
+                App.toggleWindow(WINDOW_NAME);
+                results[0].attribute.app.launch();
             }
         },
 
         // filter out the list
-        on_change: ({ text }) => applications.forEach(item => {
-            item.visible = item.attribute.app.match(text ?? "")
-        }),
-    })
+        on_change: ({ text }) =>
+            applications.forEach((item) => {
+                item.visible = item.attribute.app.match(text ?? "");
+            }),
+    });
 
     entry.connect("focus-in-event", () => {
-        entry.class_name = "unset launcher-entry focused"
-    })
+        entry.class_name = "unset launcher-entry focused";
+    });
 
     entry.connect("focus-out-event", () => {
-        entry.class_name = "unset launcher-entry"
-    })
+        entry.class_name = "unset launcher-entry";
+    });
 
     return Widget.Box({
         vertical: true,
@@ -96,40 +97,40 @@ const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
             Widget.Scrollable({
                 class_name: "launcher-contents",
                 hscroll: "never",
-                css: `min-width: ${width}px;`
-                    + `min-height: ${height}px;`,
+                css: `min-width: ${width}px;` + `min-height: ${height}px;`,
                 child: list,
             }),
         ],
-        setup: self => self.hook(App, (_, windowName, visible) => {
-            if (windowName !== WINDOW_NAME)
-                return
+        setup: (self) =>
+            self.hook(App, (_, windowName, visible) => {
+                if (windowName !== WINDOW_NAME) return;
 
-            // when the applauncher shows up
-            if (visible) {
-                repopulate()
-                entry.text = ""
-                entry.grab_focus()
-            }
-        }),
-    })
-}
+                // when the applauncher shows up
+                if (visible) {
+                    repopulate();
+                    entry.text = "";
+                    entry.grab_focus();
+                }
+            }),
+    });
+};
 
 // there needs to be only one instance
 export const Launcher = Widget.Window({
     name: WINDOW_NAME,
     class_name: "launcher-window",
-    setup: self => self.keybind("Escape", () => {
-        App.closeWindow(WINDOW_NAME)
-    }),
+    setup: (self) =>
+        self.keybind("Escape", () => {
+            App.closeWindow(WINDOW_NAME);
+        }),
     visible: false,
     keymode: "exclusive",
     child: Widget.Box({
-        class_name: "launcher-container",
-        child:  Applauncher({
+        class_name: "launcher-container transparent shadow",
+        child: Applauncher({
             width: 350,
             height: 380,
             spacing: 12,
         }),
-    }) 
-})
+    }),
+});

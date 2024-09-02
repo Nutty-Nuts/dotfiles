@@ -2,6 +2,10 @@
 .loading {
   color: #83a598; }
 
+.suspend,
+.sleep {
+  color: #d3869b; }
+
 .empty,
 .disabled {
   color: #A89984; }
@@ -15,6 +19,23 @@
 .critical,
 .error {
   color: #fb4934; }
+
+.resizeable {
+  min-width: 0px;
+  min-height: 0px; }
+
+.unset {
+  all: unset; }
+
+.transparent {
+  opacity: 0.85; }
+
+.shadow {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4); }
+
+button {
+  background: #1d2021;
+  color: #fbf1c7; }
 
 .circular-progress-status {
   font-size: 6px;
@@ -112,18 +133,86 @@
   border: 0.05em solid #665c54;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4); }
 
-/* user profile picture */
+.launcher-button {
+  margin: 4px;
+  padding: 0px 8px 0px 8px;
+  background: #1d2021;
+  color: #fbf1c7;
+  font-size: 20px;
+  font-weight: bold; }
+
+.launcher-button:active {
+  background: #665c54;
+  color: #1d2021; }
+
+.launcher-title {
+  color: #fbf1c7;
+  font-weight: bold;
+  font-size: 16px; }
+
+.launcher-container {
+  margin: 1em;
+  background: #3c3836;
+  border: 0.05em solid #665c54;
+  border-radius: 1em; }
+
+.launcher-contents {
+  margin: 1em 0em; }
+
+.launcher-entry {
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.3);
+  background-color: #282828;
+  border: 0.1em solid #504945;
+  padding: 1.40em;
+  border-radius: 0.5em;
+  font-size: 14px; }
+
+.launcher-entry > * {
+  color: #fbf1c7; }
+
+.launcher-item {
+  background-color: #665c54;
+  border: 0.2em solid #665c54;
+  border-radius: 0.5em;
+  color: #fbf1c7;
+  padding: 0.6em;
+  margin: 0em 1em;
+  transition: all 0.25s ease; }
+  .launcher-item .title {
+    font-size: 16px; }
+
+.launcher-item.focused {
+  background: #928374;
+  color: #1d2021;
+  border: 0.2em solid #b8bb26;
+  transition: all 0.25s ease;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
+  font-weight: bold; }
+
+.launcher-entry.focused {
+  background-color: #282828;
+  border: 0.2em solid #b8bb26;
+  padding: 1.30em;
+  color: #fbf1c7; }
+
+scrollbar,
+scrollbar * {
+  all: unset; }
+
+scrollbar slider {
+  background: #665c54;
+  min-height: 0.1em;
+  min-width: 0.4em;
+  border-radius: 0.25em; }
+  scrollbar slider:hover {
+    background: #7c6f64; }
+
 * {
   font-family: JetBrainsMono NerdFont Mono; }
 
-.resizeable {
-  min-width: 0px;
-  min-height: 0px; }
-
 .bar-container {
   background: #3c3836;
-  padding: 0.25em;
-  opacity: 0.85; }
+  padding: 0.25em; }
 
 .user {
   border-radius: 4em;
@@ -211,9 +300,6 @@
   padding: 0em 0.5em 0em 0.5em;
   border-radius: 0.75em; }
 
-.unset {
-  all: unset; }
-
 .notify-icon {
   min-width: 68px;
   min-height: 68px;
@@ -237,7 +323,6 @@
   margin: 0.5em;
   border: 1px solid #3c3836;
   background-color: #3c3836;
-  opacity: 0.85;
   border: 0.05em solid #665c54;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4); }
 
@@ -254,7 +339,12 @@
 
 .actions .action-button {
   margin: 0 0.4em;
-  margin-top: 0.8em; }
+  margin-top: 0.8em;
+  background: #1d2021;
+  color: #fbf1c7; }
+  .actions .action-button:hover {
+    background: #fbf1c7;
+    color: #1d2021; }
 
 .actions .action-button:first-child {
   margin-left: 0; }
@@ -276,13 +366,11 @@
 
 .player {
   min-width: 25em;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
   background: #3c3836;
   color: #fbf1c7;
   border-radius: 0.75em;
   padding: 1.25em;
   margin: 0.5em;
-  opacity: 0.85;
   border: 0.05em solid #665c54; }
 
 .player .img {
@@ -305,7 +393,8 @@
   font-size: 1.1em;
   color: #7c6f64; }
 
-.player .position, .player .length {
+.player .position,
+.player .length {
   color: #7c6f64; }
 
 .player scale.position {
@@ -372,15 +461,13 @@
   background: rgba(0, 0, 0, 0); }
 
 .speaker-osd-container {
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
   min-width: 10em;
   min-height: 0.5em;
   padding: 1em;
   margin: 1em;
   background: #3c3836;
   border: 0.05em solid #665c54;
-  border-radius: 0.75em;
-  opacity: 0.85; }
+  border-radius: 0.75em; }
 
 .speaker-osd-icon {
   margin-right: 0.5em;
@@ -401,77 +488,31 @@
 .speaker-osd-slider highlight {
   background: #fbf1c7; }
 
-.launcher-button {
-  margin: 4px;
-  padding: 0px 8px 0px 8px;
-  background: #1d2021;
-  color: #fbf1c7;
-  font-size: 20px;
-  font-weight: bold; }
+button.poweroff:hover {
+  background: #fb4934; }
 
-.launcher-button:active {
-  background: #665c54;
-  color: #1d2021; }
+button.poweroff:active {
+  background: #cc241d;
+  color: #665c54; }
 
-.launcher-title {
-  color: #fbf1c7;
-  font-weight: bold;
-  font-size: 16px; }
+button.reboot:hover {
+  background: #fabd2f; }
 
-.launcher-container {
-  margin: 1em;
-  background: #3c3836;
-  opacity: 0.90;
-  border: 0.05em solid #665c54;
-  border-radius: 1em;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.5); }
+button.reboot:active {
+  background: #d79921;
+  color: #665c54; }
 
-.launcher-contents {
-  margin: 1em 0em; }
+button.logout:hover {
+  background: #83a598; }
 
-.launcher-entry {
-  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.3);
-  background-color: #282828;
-  border: 0.1em solid #504945;
-  padding: 1.40em;
-  border-radius: 0.5em;
-  font-size: 14px; }
+button.logout:active {
+  background: #458588;
+  color: #665c54; }
 
-.launcher-entry > * {
+button.suspend {
   color: #fbf1c7; }
-
-.launcher-item {
-  background-color: #665c54;
-  border: 0.2em solid #665c54;
-  border-radius: 0.5em;
-  color: #fbf1c7;
-  padding: 0.6em;
-  margin: 0em 1em;
-  transition: all 0.25s ease; }
-  .launcher-item .title {
-    font-size: 16px; }
-
-.launcher-item.focused {
-  background: #928374;
-  color: #1d2021;
-  border: 0.2em solid #b8bb26;
-  transition: all 0.25s ease;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
-  font-weight: bold; }
-
-.launcher-entry.focused {
-  background-color: #282828;
-  border: 0.2em solid #b8bb26;
-  padding: 1.30em;
-  color: #fbf1c7; }
-
-scrollbar, scrollbar * {
-  all: unset; }
-
-scrollbar slider {
-  background: #665c54;
-  min-height: 0.1em;
-  min-width: 0.4em;
-  border-radius: 0.25em; }
-  scrollbar slider:hover {
-    background: #7c6f64; }
+  button.suspend:hover {
+    background: #d3869b; }
+  button.suspend:active {
+    background: #b16286;
+    color: #665c54; }

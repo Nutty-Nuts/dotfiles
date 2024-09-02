@@ -1,43 +1,42 @@
-import { Bar } from './bar/bar.js'
-import { Launcher } from './launcher/launcher.js'
-import { NotificationPopups } from './notification/notification.js'
-import { MediaPlayer } from './media_player/media_player.js'
-import { SpeakerOSDWindow } from './osd/speaker_osd.js'
-import { ControlCenter } from './popups/control_center.js'
-import { battery_events } from './events/battery_events.js'
+import { Bar } from "./bar/bar.js";
+import { Launcher } from "./popups/launcher.js";
+import { NotificationPopupLayer } from "./popups/notification.js";
+import { SpeakerOSDWindow } from "./popups/speaker_osd.js";
+import { ControlCenter } from "./popups/control_center.js";
+import { MediaPlayerLayer } from "./popups/media_player.js";
+import { BrightnessOSD } from "./popups/brightness_osd.js";
 
-const scss = `${App.configDir}/style.scss`
-const css = `${App.configDir}/style.css`
+import { battery_events } from "./events/battery_events.js";
+import { audio_events } from "./events/audio_events.js";
 
-battery_events()
+const scss = `${App.configDir}/style.scss`;
+const css = `${App.configDir}/style.css`;
 
-Utils.exec(`sassc ${scss} ${css}`)
-App.resetCss()
-App.applyCss(css)
+battery_events();
+audio_events();
+
+Utils.exec(`sassc ${scss} ${css}`);
+App.resetCss();
+App.applyCss(css);
 
 Utils.monitorFile(
     // directory that contains the scss files
     `${App.configDir}/style.scss`,
 
     // reload function
-    function() {
+    function () {
         // compile, reset, apply
-        print('applying updated scss')
-        Utils.exec(`sassc ${scss} ${css}`)
-        App.resetCss()
-        App.applyCss(css)
-    },
-)
+        print("applying updated scss");
+        Utils.exec(`sassc ${scss} ${css}`);
+        App.resetCss();
+        App.applyCss(css);
+    }
+);
+
+export const BarLayer = Bar();
 
 App.config({
     iconTheme: "Colloid-Yellow-Gruvbox-Dark",
     style: css,
-    windows: [
-        Bar(),
-        Launcher,
-        MediaPlayer,
-        NotificationPopups(),
-        SpeakerOSDWindow,
-        ControlCenter()
-    ]
-})
+    windows: [BarLayer, Launcher, MediaPlayerLayer, NotificationPopupLayer, SpeakerOSDWindow, BrightnessOSD, ControlCenter()],
+});
