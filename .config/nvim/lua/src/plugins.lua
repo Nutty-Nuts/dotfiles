@@ -15,7 +15,7 @@ local syntax = {
 
 local quality_of_life = {
     "tpope/vim-sleuth",
-    -- "tpope/vim-commentary",
+    "tpope/vim-commentary",
     "abecodes/tabout.nvim",
     "windwp/nvim-autopairs",
     "norcalli/nvim-colorizer.lua",
@@ -69,6 +69,8 @@ local code_navigation = {
 }
 
 local themes = {
+    "echasnovski/mini.icons",
+    "sainnhe/everforest",
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 }
@@ -95,7 +97,7 @@ local user_interface = {
 
 local temp = {
     "ThePrimeagen/vim-be-good",
-    { "echasnovski/mini.nvim", version = false },
+    -- { "echasnovski/mini.nvim", version = false },
     "mfussenegger/nvim-dap-python",
     {
         "linux-cultist/venv-selector.nvim",

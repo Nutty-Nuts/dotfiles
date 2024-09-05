@@ -1,3 +1,9 @@
+local status, which_key = pcall(require, "which-key")
+
+if not status then
+    return
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -5,64 +11,169 @@ local function bind_keys(mode, table)
     for keys, command in pairs(table) do
         vim.keymap.set(mode, keys, command[1], { noremap = true })
     end
-    require("which-key").register(mode)
 end
 
-local normal_mode = {
-    ["<leader>b"] = { ":NvimTreeToggle<CR>", "Toggle File Tree" },
+local function register_binds(binds, mode, no_remap)
+    for key, bind in pairs(binds) do
+        which_key.add({ key, bind.command, desc = bind.desc, mode = mode })
+    end
+end
 
-    ["<F1>"] = { ":Telescope find_files<CR>", "Find Files" },
-    ["<leader>ff"] = { ":Telescope find_files<CR>", "Find Files" },
-    ["<leader>fs"] = { ":Telescope live_grep<CR>", "Grep Search" },
-    ["<leader>fb"] = { ":Telescope buffers<CR>", "Browse Buffers" },
-    ["<leader>fg"] = { ":Telescope git_files<CR>", "Find Git Files" },
-    ["<leader>fn"] = { ":Telescope notify theme=dropdown<CR>", "Find Git Files" },
+local binds = {
+    normal = {
+        --- BINDS FOR NORMAL MODE
+        -- F-key Binds
+        ["<F1>"] = {
+            command = ":Telescope find_files<CR>",
+            desc = "Find Files",
+        },
+        ["<F2>"] = {
+            command = ":Lspsaga rename<CR>",
+            desc = "Rename",
+        },
+        ["<leader>b"] = {
+            command = ":NvimTreeToggle<CR>",
+            desc = "Toggle File Tree",
+        },
 
-    ["<F2>"] = { ":Lspsaga rename<CR>", "Rename" },
-    ["<leader>lh"] = { ":Lspsaga hover_doc<CR>", "Hover Docs" },
-    ["<leader>lg"] = { ":Lspsaga goto_definition<CR>", "Goto Definition" },
-    ["<leader>lr"] = { ":Lspsaga rename<CR>", "Rename" },
-    ["<leader>lf"] = { ":Lspsaga lsp_finder<CR>", "Lsp Finder" },
-    ["<leader>lt"] = { ":Lspsaga term_toggle<CR>", "Toggle Terminal" },
-    ["<leader>la"] = { ":Lspsaga code_action<CR>", "Code Actions" },
+        -- TELESCOPE: Telescope Binds
+        ["<leader>ff"] = {
+            command = ":Telescope find_files<CR>",
+            desc = "Find Files",
+        },
+        ["<leader>fs"] = {
+            command = ":Telescope live_grep<CR>",
+            desc = "Live File Search via Grep",
+        },
+        ["<leader>fb"] = {
+            command = ":Telescope buffers<CR>",
+            desc = "Browse through buffers",
+        },
+        ["<leader>fg"] = {
+            command = ":Telescope git_files<CR>",
+            desc = "Find Git Files",
+        },
+        ["<leader>fn"] = {
+            command = ":Telescope notify theme=dropdown<CR>",
+            desc = "Browse through notifications",
+        },
 
-    ["<leader>tb"] = { ":TagbarToggle<CR>", "Toggle Tagbar" },
+        -- LSPSAGA: Lspsaga Binds
+        ["<leader>lh"] = {
+            command = ":Lspsaga hover_doc<CR>",
+            desc = "Hover Documentation",
+        },
+        ["<leader>lg"] = {
+            command = ":Lspsaga goto_definition<CR>",
+            desc = "Goto Definition",
+        },
+        ["<leader>lr"] = {
+            command = ":Lspsaga rename<CR>",
+            desc = "Rename Signatur",
+        },
+        ["<leader>lf"] = {
+            command = ":Lspsaga lsp_finder<CR>",
+            desc = "Lsp Finder",
+        },
+        ["<leader>lt"] = {
+            command = ":Lspsaga term_toggle<CR>",
+            desc = "Toggle Terminal",
+        },
+        ["<leader>la"] = {
+            command = ":Lspsaga code_action<CR>",
+            desc = "Code Actions",
+        },
 
-    ["<leader>gg"] = { ":Neogit<CR>", "Toggle Tagbar" },
-    ["<leader>gc"] = { ":Neogit commit<CR>", "Toggle Tagbar" },
-    ["<leader>gd"] = { ":Neogit diff<CR>", "Toggle Tagbar" },
+        --- TAGBAR: Tagbar Binds
+        ["<leader>tb"] = {
+            command = ":TagbarToggle<CR>",
+            desc = "Toggle Tagbar",
+        },
 
-    ["zr"] = { require("ufo").openAllFolds, "Open All Folds" },
-    ["zm"] = { require("ufo").closeAllFolds, "Close All Folds" },
+        --- NEOGIT: Neogit Binds
+        ["<leader>ngg"] = {
+            command = ":Neogit<CR>",
+            desc = "Git",
+        },
+        ["<leader>ngc"] = {
+            command = ":Neogit commit<CR>",
+            desc = "Git Commit",
+        },
+        ["<leader>ngd"] = {
+            command = ":Neogit diff<CR>",
+            desc = "Toggle ",
+        },
 
-    -- ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Line" },
+        -- SPLIT: Split Navigation Binds
+        ["<C-h>"] = {
+            commands = "<C-w><C-h>",
+            desc = "Focus Left Window",
+        },
+        ["<C-l>"] = {
+            commands = "<C-w><C-l>",
+            desc = "Focus Right Window",
+        },
+        ["<C-j>"] = {
+            commands = "<C-w><C-j>",
+            desc = "Focus Lower Window",
+        },
+        ["<C-k>"] = {
+            commands = "<C-w><C-k>",
+            desc = "Focus Upper Window",
+        },
 
-    ["<Esc>"] = { ":nohlsearch<CR>" },
+        -- UFO: UFO/Folds Binds
+        ["zr"] = {
+            command = require("ufo").openAllFolds,
+            desc = "Open Folds",
+        },
+        ["zm"] = {
+            command = require("ufo").closeAllFolds,
+            desc = "Close Folds",
+        },
 
-    ["<C-h>"] = { "<C-w><C-h>", "Focus Left Window" },
-    ["<C-l>"] = { "<C-w><C-l>", "Focus Right Window" },
-    ["<C-j>"] = { "<C-w><C-j>", "Focus Lower Window" },
-    ["<C-k>"] = { "<C-w><C-k>", "Focus Upper Window" },
+        ["<leader>/"] = {
+            command = ":Commentary<CR>",
+            desc = "Comment/Uncomment Line",
+        },
+
+        ["<Esc>"] = {
+            command = ":nohlsearch<CR>",
+            desc = "",
+        },
+    },
+    edit = {
+        -- BINDS FOR EDIT MODE
+    },
+    visual = {
+        -- BINDS FOR VISUAL MODE
+        ["<leader>/"] = {
+            command = ":Commentary<CR>",
+            desc = "(Un)comment Lines",
+        },
+        ["<C-d>"] = {
+            command = "<C-d>zz",
+            desc = "",
+        },
+        ["K"] = {
+            command = ":m '<-2<CR>gv=gv",
+            desc = "",
+        },
+        ["J"] = {
+            command = ":m '>+1<CR>gv=gv",
+            desc = "",
+        },
+    },
+    terminal = {},
 }
 
-local visual_mode = {
-    -- ["<leader>/"] = { ":Commentary<CR>", "(Un)comment Lines" },
+register_binds(binds.normal, "n", true)
+register_binds(binds.edit, "e", true)
+register_binds(binds.visual, "v", true)
 
-    ["<C-d>"] = { "<C-d>zz" },
-    ["K"] = { ":m '<-2<CR>gv=gv" },
-    ["J"] = { ":m '>+1<CR>gv=gv" },
-}
-
-local terminal_mode = {
-    ["<Esc><Esc>"] = { "<C-\\><C-n>", "Exit terminal mode" },
-}
-
-bind_keys("n", normal_mode)
-bind_keys("v", visual_mode)
-bind_keys("t", terminal_mode)
-
-require("which-key").register({
-    ["<leader>f"] = { name = "+fuzzy finder" },
-    ["<leader>d"] = { name = "+debugging" },
-    ["<leader>l"] = { name = "+lsp actions" },
+which_key.add({
+    { "<leader>f", { group = "+telescope" } },
+    { "<leader>d", { group = "+debugging" } },
+    { "<leader>l", { group = "+lsp" } },
+    { "<leader>ng", { group = "+neogit" } },
 })
