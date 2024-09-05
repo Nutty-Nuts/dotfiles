@@ -51,8 +51,10 @@ export function ControlCenter() {
         class_name: "control-center",
         anchor: ["top", "right"],
         layer: "top",
-        visible: CONCEN.bind(),
+        visible: false,
         child: container,
+    }).hook(CONCEN, (self) => {
+        self.visible = CONCEN.value;
     });
 
     return window;

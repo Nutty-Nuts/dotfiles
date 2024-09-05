@@ -1,7 +1,7 @@
 export const STATES = Variable({
     control_center: {
-        visible: false
-    }
-})
+        visible: false,
+    },
+});
 
-export const CONCEN = Variable(false)
+export const CONCEN = Variable(false);

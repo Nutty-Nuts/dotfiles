@@ -5,6 +5,8 @@ import { SpeakerOSDWindow } from "./popups/speaker_osd.js";
 import { ControlCenter } from "./popups/control_center.js";
 import { MediaPlayerLayer } from "./popups/media_player.js";
 import { BrightnessOSD } from "./popups/brightness_osd.js";
+import { Clock } from "./widgets/clock.js";
+import { Playing } from "./widgets/playing.js";
 
 import { battery_events } from "./events/battery_events.js";
 import { audio_events } from "./events/audio_events.js";
@@ -38,5 +40,5 @@ export const BarLayer = Bar();
 App.config({
     iconTheme: "Colloid-Yellow-Gruvbox-Dark",
     style: css,
-    windows: [BarLayer, Launcher, MediaPlayerLayer, NotificationPopupLayer, SpeakerOSDWindow, BrightnessOSD, ControlCenter()],
+    windows: [BarLayer, Launcher, MediaPlayerLayer, NotificationPopupLayer, SpeakerOSDWindow, BrightnessOSD, ControlCenter(), Clock(), Playing()],
 });

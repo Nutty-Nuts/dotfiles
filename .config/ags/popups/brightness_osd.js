@@ -26,7 +26,7 @@ export const BrightnessOSD = Widget.Window({
     layer: "overlay",
     child: brightness_container,
     anchor: ["bottom"],
-    margins: [0, 0, 64, 0],
+    margins: [0, 0, 96, 0],
 });
 
 let hideTimeoutId;

@@ -1,5 +1,5 @@
-@import 'gruvbox_dark';
-// @import 'everforest_dark';
+// @import 'gruvbox_dark';
+@import 'everforest_dark';
 @import 'status_colors';
 @import 'css_states';
 @import 'widget_styles';
@@ -390,33 +390,36 @@ window.notification-popups box.notifications {
 button.poweroff {
     &:hover {
         background: $red;
+        color: $black;
     }
 
     &:active {
         background: $dark-red;
-        color: $gray;
+        color: $black;
     }
 }
 
 button.reboot {
     &:hover {
         background: $yellow;
+        color: $black;
     }
 
     &:active {
         background: $dark-yellow;
-        color: $gray;
+        color: $black;
     }
 }
 
 button.logout {
     &:hover {
         background: $blue;
+        color: $black;
     }
 
     &:active {
         background: $dark-blue;
-        color: $gray;
+        color: $black;
     }
 }
 
@@ -426,10 +429,31 @@ button.suspend {
 
     &:hover {
         background: $purple;
+        color: $black;
     }
 
     &:active {
         background: $dark-purple;
-        color: $gray;
+        color: $black;
     }
+}
+
+.playing-song-label {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+
+.clock-time-label {
+    font-family: Outfit Extrabold;
+    font-size: 172px;
+    color: $base-color;
+}
+
+.clock-day-label {
+    font-family: Outfit ExtraBold;
+    font-size: 24px;
+    letter-spacing: 12px;
+    margin-top: -32px;
 }

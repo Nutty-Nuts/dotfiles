@@ -32,7 +32,7 @@ export const SpeakerOSDWindow = Widget.Window({
     layer: "overlay",
     child: SpeakerOSD,
     anchor: ["bottom"],
-    margins: [0, 0, 64, 0],
+    margins: [0, 0, 96, 0],
 });
 
 let hideTimeoutId;
