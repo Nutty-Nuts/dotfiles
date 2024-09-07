@@ -2,7 +2,7 @@ const time_date = Variable(
     {},
     {
         poll: [
-            30000,
+            1000,
             'date "+%I %M %p %a %d"',
             (out) => {
                 let object = {};

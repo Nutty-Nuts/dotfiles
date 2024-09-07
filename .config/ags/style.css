@@ -214,6 +214,10 @@ scrollbar slider {
   background: #272E33;
   padding: 0.25em; }
 
+.bar-container-1 {
+  background: rgba(39, 46, 51, 0.5);
+  padding: 0.25em; }
+
 .user {
   border-radius: 4em;
   background-image: url("./assets/frieren.png");

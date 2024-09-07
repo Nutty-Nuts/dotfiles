@@ -1,4 +1,3 @@
-
 /* workspace component */
 .workspaces {
     background: $black;
@@ -8,23 +7,28 @@
     border-radius: 8px;
 }
 
+
 .workspace {
     background: $light-gray;
     border-radius: 4px;
     padding: 0px 6px;
 
     &.occupied {
-        background: $blue; 
+        background: $blue;
     }
+
     &.focused {
-        background: $green; 
+        background: $green;
         padding: 0px 10px;
         margin: -1px 0px;
     }
 }
 
 .workspace {
-    &.occupied, &.focused, &:not(:last-child) {
+
+    &.occupied,
+    &.focused,
+    &:not(:last-child) {
         transition: unset;
         margin-right: 8px;
     }

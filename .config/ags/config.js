@@ -1,4 +1,5 @@
 import { Bar } from "./bar/bar.js";
+import { BarExtra } from "./bar/bar.js";
 import { Launcher } from "./popups/launcher.js";
 import { NotificationPopupLayer } from "./popups/notification.js";
 import { SpeakerOSDWindow } from "./popups/speaker_osd.js";
@@ -36,9 +37,22 @@ Utils.monitorFile(
 );
 
 export const BarLayer = Bar();
+// export const BarLayerExtra = BarExtra(1);
 
 App.config({
     iconTheme: "Colloid-Yellow-Gruvbox-Dark",
     style: css,
-    windows: [BarLayer, Launcher, MediaPlayerLayer, NotificationPopupLayer, SpeakerOSDWindow, BrightnessOSD, ControlCenter(), Clock(), Playing()],
+    windows: [
+        BarLayer,
+        // BarLayerExtra,
+        Launcher,
+        MediaPlayerLayer,
+        NotificationPopupLayer,
+        SpeakerOSDWindow,
+        BrightnessOSD,
+        ControlCenter(),
+        Clock(),
+        Clock(1),
+        Playing(),
+    ],
 });

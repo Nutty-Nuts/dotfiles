@@ -4,7 +4,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Shell PATHs
 export PREFIX="$HOME/opt/cross"
 export TARGET=i686-elf
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 export PATH="$PREFIX/bin:$PATH"
 export PATH="$HOME/opt/cross/bin:$PATH"
@@ -52,7 +52,7 @@ zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
 zstyle ':completion:*' menu no
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -T --all -L 2 --colour=always --icons=always $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Shell integrations
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
@@ -85,25 +85,43 @@ nvimc() {
     rm ~/.local/state/nvim/swap/*.swp
 }
 
-local color00='#32302f'
-local color01='#3c3836'
-local color02='#504945'
-local color03='#665c54'
-local color04='#bdae93'
-local color05='#d5c4a1'
-local color06='#ebdbb2'
-local color07='#fbf1c7'
-local color08='#fb4934'
-local color09='#fe8019'
-local color0A='#fabd2f'
-local color0B='#b8bb26'
-local color0C='#8ec07c'
-local color0D='#83a598'
-local color0E='#d3869b'
-local color0F='#d65d0e'
+# local color00='#32302f'
+# local color01='#3c3836'
+# local color02='#504945'
+# local color03='#665c54'
+# local color04='#bdae93'
+# local color05='#d5c4a1'
+# local color06='#ebdbb2'
+# local color07='#fbf1c7'
+# local color08='#fb4934'
+# local color09='#fe8019'
+# local color0A='#fabd2f'
+# local color0B='#b8bb26'
+# local color0C='#8ec07c'
+# local color0D='#83a598'
+# local color0E='#d3869b'
+# local color0F='#d65d0e'
+
+local color00='#272e33'
+local color01='#23383c'
+local color02='#374145'
+local color03='#424b50'
+local color04='#7a8478'
+local color05='#859289'
+local color06='#9da9a0'
+local color07='#d3c6aa'
+local color08='#e67e80'
+local color09='#e69875'
+local color0A='#dbbc7f'
+local color0B='#a7c080'
+local color0C='#83c092'
+local color0D='#7fbbb3'
+local color0E='#d699b6'
+local color0F='#e67e80'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
-" --color=spinner:$color0C,hl:$color0D"\
+" --color=spinner:$color0C,hl:$color0D,gutter:$color00,bg+:$color02"\
 " --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"\
-" --layout=reverse --highlight-line --border=rounded --prompt=▌ --header='fzf version: $(fzf --version)' --header-first --multi"
+" --color=border:$color04"\
+" --layout=reverse --highlight-line --border=rounded --prompt=▌ --header-first --multi"

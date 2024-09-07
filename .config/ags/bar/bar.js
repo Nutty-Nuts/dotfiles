@@ -20,6 +20,18 @@ function Left() {
         ],
     });
 }
+
+function LeftExtra() {
+    return Widget.Box({
+        spacing: 4,
+        children: [
+            // ToggleLauncher(),
+            // ToolTray(),
+            Workspaces(),
+        ],
+    });
+}
+
 function Center() {
     return Widget.Box({
         spacing: 8,
@@ -50,10 +62,18 @@ function Right() {
     });
 }
 
-export function Bar(monitor = 0) {
+function RightExtra() {
+    return Widget.Box({
+        hpack: "end",
+        spacing: 8,
+        children: [Battery(), Network(), User()],
+    });
+}
+
+export function Bar() {
     return Widget.Window({
-        monitor,
-        name: "agsbar",
+        monitor: 0,
+        name: "agsbar-0",
         visible: true,
         class_name: "bar-window",
         anchor: ["top", "left", "right"],
@@ -63,6 +83,23 @@ export function Bar(monitor = 0) {
             start_widget: Left(),
             center_widget: Center(),
             end_widget: Right(),
+        }),
+    });
+}
+
+export function BarExtra(monitor = 1) {
+    return Widget.Window({
+        monitor,
+        name: `agsbar-${monitor}`,
+        visible: true,
+        class_name: "bar-window-1",
+        anchor: ["top", "left", "right"],
+        exclusivity: "exclusive",
+        child: Widget.CenterBox({
+            class_name: "bar-container-1 transparent",
+            start_widget: LeftExtra(),
+            center_widget: Center(),
+            end_widget: RightExtra(),
         }),
     });
 }
