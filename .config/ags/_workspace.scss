@@ -11,7 +11,7 @@
 .workspace {
     background: $light-gray;
     border-radius: 4px;
-    padding: 0px 6px;
+    border: none;
 
     &.occupied {
         background: $blue;

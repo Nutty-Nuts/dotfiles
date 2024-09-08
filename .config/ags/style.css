@@ -76,7 +76,7 @@ button {
 .workspace {
   background: #859289;
   border-radius: 4px;
-  padding: 0px 6px; }
+  border: none; }
   .workspace.occupied {
     background: #7FBBB3; }
   .workspace.focused {
@@ -208,7 +208,9 @@ scrollbar slider {
     background: #859289; }
 
 * {
-  font-family: JetBrainsMono NerdFont Mono; }
+  font-family: JetBrainsMono NerdFont Mono;
+  border: none;
+  box-shadow: none; }
 
 .bar-container {
   background: #272E33;

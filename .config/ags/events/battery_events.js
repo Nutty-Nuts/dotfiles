@@ -23,7 +23,10 @@ function toggle_classnames(widgets, opts) {
 
 export function battery_events() {
     Utils.timeout(50, () => {
-        Utils.merge([battery.bind("charging"), battery.bind("percent")], (charging, percent) => {
+        Utils.merge([battery.bind("charging"), battery.bind("percent"), battery.bind("available")], (charging, percent, available) => {
+            if (!available) {
+                return;
+            }
             // improving battery life by disabling blur and shadows
             if (charging && power_saving == true) {
                 set_hyprland_opts({

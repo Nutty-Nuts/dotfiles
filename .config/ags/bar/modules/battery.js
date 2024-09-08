@@ -103,13 +103,17 @@ export function Battery() {
             battery_label.visible = false;
         },
     }).hook(battery, (self) => {
+        if (!battery.available) {
+            self.visible = false;
+            return;
+        }
+
         let time_remaining = battery["time_remaining"];
         let seconds = time_remaining % 60;
         let minutes = ((time_remaining - seconds) / 60) % 60;
         let hours = Math.floor((time_remaining - minutes * 60) / 60 / 60);
         let message = "";
 
-        // console.log(time_remaining, 'time_remaining', seconds, minutes, hours)
         if (battery.charging) {
             message = "Until Fully Charged";
         } else {
