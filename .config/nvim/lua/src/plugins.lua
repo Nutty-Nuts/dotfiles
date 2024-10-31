@@ -154,6 +154,7 @@ local temp = {
         },
         config = true,
     },
+    { "echasnovski/mini.ai", version = "*" },
 }
 
 require("lazy").setup({
