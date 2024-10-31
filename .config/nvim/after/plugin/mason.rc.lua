@@ -17,7 +17,9 @@ masonlsp.setup({
         "bashls",
         "marksman",
         "cmake",
-        "asm_lsp",
+        "mesonlsp",
+        "zls",
+        -- "asm_lsp",
     },
 })
 
@@ -32,6 +34,6 @@ masonnull.setup({
         "beautysh",
         "clang_format",
         "cmake_format",
-        "asmfmt",
+        -- "asmfmt",
     },
 })

@@ -38,9 +38,12 @@ local server_configurations = {
     ["bashls"] = {},
     ["marksman"] = {},
     ["cmake"] = {},
-    ["asm_lsp"] = {
-        filetypes = { "asm", "vasm", "s", "S" },
-    },
+    ["zls"] = {},
+    ["mesonlsp"] = {},
+    -- ["asm_lsp"] = {
+    --     filetypes = { "asm", "vasm", "s", "S" },
+    -- },
+    ["tailwindcss"] = {},
 }
 
 for language, configurations in pairs(server_configurations) do

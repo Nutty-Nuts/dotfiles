@@ -1,19 +1,10 @@
-local status, which_key = pcall(require, "which-key")
-
-if not status then
-    return
-end
+local harpoon = require("harpoon")
+local which_key = require("which-key")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local function bind_keys(mode, table)
-    for keys, command in pairs(table) do
-        vim.keymap.set(mode, keys, command[1], { noremap = true })
-    end
-end
-
-local function register_binds(binds, mode, no_remap)
+local function register_binds(binds, mode)
     for key, bind in pairs(binds) do
         which_key.add({ key, bind.command, desc = bind.desc, mode = mode })
     end
@@ -85,7 +76,7 @@ local binds = {
         },
 
         --- TAGBAR: Tagbar Binds
-        ["<leader>tb"] = {
+        ["<leader>gb"] = {
             command = ":TagbarToggle<CR>",
             desc = "Toggle Tagbar",
         },
@@ -141,6 +132,42 @@ local binds = {
             command = ":nohlsearch<CR>",
             desc = "",
         },
+
+        -- TROUBLE: Trouble Binds
+        ["<leader>tg"] = {
+            command = ":Trouble diagnostics toggle<CR>",
+            desc = "Toggle Trouble diagnostics",
+        },
+        ["<leader>tt"] = {
+            command = ":Trouble diagnostics toggle filter.buf=0<CR>",
+            desc = "Toggle Trouble diagnostics",
+        },
+
+        -- HARPOON: Harpoon Binds
+        ["<leader>ha"] = {
+            command = function()
+                harpoon:list():add()
+            end,
+            desc = "Add to Harpoon List",
+        },
+        ["<leader>hn"] = {
+            command = function()
+                harpoon:list():next()
+            end,
+            desc = "Next Item in Harpoon List",
+        },
+        ["<leader>hp"] = {
+            command = function()
+                harpoon:list():prev()
+            end,
+            desc = "Previous Item in Harpoon List",
+        },
+        ["<leader>he"] = {
+            command = function()
+                harpoon.ui:toggle_quick_menu(harpoon:list())
+            end,
+            desc = "Toggle Harpoon Quick Menu",
+        },
     },
     edit = {
         -- BINDS FOR EDIT MODE
@@ -167,9 +194,9 @@ local binds = {
     terminal = {},
 }
 
-register_binds(binds.normal, "n", true)
-register_binds(binds.edit, "e", true)
-register_binds(binds.visual, "v", true)
+register_binds(binds.normal, "n")
+register_binds(binds.edit, "e")
+register_binds(binds.visual, "v")
 
 which_key.add({
     { "<leader>f", { group = "+telescope" } },

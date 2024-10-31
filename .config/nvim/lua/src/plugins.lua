@@ -20,6 +20,35 @@ local quality_of_life = {
     "windwp/nvim-autopairs",
     "norcalli/nvim-colorizer.lua",
     "folke/which-key.nvim",
+    {
+        "dsznajder/vscode-es7-javascript-react-snippets",
+        build = "yarn install --frozen-lockfile && yarn compile",
+    },
+    {
+        "stevearc/conform.nvim",
+        opts = {},
+    },
+    {
+        "linux-cultist/venv-selector.nvim",
+        dependencies = {
+            "neovim/nvim-lspconfig",
+            "mfussenegger/nvim-dap",
+            "mfussenegger/nvim-dap-python", --optional
+            {
+                "nvim-telescope/telescope.nvim",
+                branch = "0.1.x",
+                dependencies = { "nvim-lua/plenary.nvim" },
+            },
+        },
+        lazy = false,
+        branch = "regexp", -- This is the regexp branch, use this for the new version
+        config = function()
+            require("venv-selector").setup()
+        end,
+        keys = {
+            { ",v", "<cmd>VenvSelect<cr>" },
+        },
+    },
 }
 
 local file_navigation = {
@@ -28,7 +57,15 @@ local file_navigation = {
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-symbols.nvim",
 
-    { "nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons" },
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = "nvim-tree/nvim-web-devicons",
+    },
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 }
 
 local package_management = {
@@ -55,9 +92,11 @@ local code_autocompletion = {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
+    {
+        "L3MON4D3/LuaSnip",
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
     "onsails/lspkind-nvim",
-    "rafamadriz/friendly-snippets",
     "saadparwaiz1/cmp_luasnip",
 }
 
@@ -95,35 +134,14 @@ local user_interface = {
     "preservim/tagbar",
 }
 
+local debugging = {
+    "folke/trouble.nvim",
+    "mfussenegger/nvim-dap-python",
+}
+
 local temp = {
     "ThePrimeagen/vim-be-good",
-    -- { "echasnovski/mini.nvim", version = false },
-    "mfussenegger/nvim-dap-python",
-    {
-        "linux-cultist/venv-selector.nvim",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "mfussenegger/nvim-dap",
-            "mfussenegger/nvim-dap-python", --optional
-            {
-                "nvim-telescope/telescope.nvim",
-                branch = "0.1.x",
-                dependencies = { "nvim-lua/plenary.nvim" },
-            },
-        },
-        lazy = false,
-        branch = "regexp", -- This is the regexp branch, use this for the new version
-        config = function()
-            require("venv-selector").setup()
-        end,
-        keys = {
-            { ",v", "<cmd>VenvSelect<cr>" },
-        },
-    },
-    {
-        "stevearc/conform.nvim",
-        opts = {},
-    },
+    -- { "echasnovski/mini.nvim", version = false },plugin
     {
         "NeogitOrg/neogit",
         dependencies = {
@@ -150,5 +168,6 @@ require("lazy").setup({
         themes,
         user_interface,
         temp,
+        debugging,
     }),
 })

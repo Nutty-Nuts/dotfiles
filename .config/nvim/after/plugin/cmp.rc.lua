@@ -1,12 +1,21 @@
+local cmp = require("cmp")
 local lspkind = require("lspkind")
 local luasnip = require("luasnip")
-local cmp = require("cmp")
 
 local format = function(entry, vim_item)
     local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 30 })(entry, vim_item)
     local strings = vim.split(kind.kind, "%s", { trimempty = true })
     kind.kind = " " .. (strings[1] or "") .. " "
     kind.menu = "    [" .. (strings[2] or "") .. "]"
+
+    local source = entry.source.name
+    vim_item.menu = vim_item.menu .. ":" .. source
+
+    -- local item = entry:get_completion_item()
+
+    -- if item.detail then
+    --     vim_item.menu = item.detail
+    -- end
 
     return kind
 end
@@ -58,8 +67,7 @@ local cmp_config = {
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" },
-    },
-    {
+    }, {
         { name = "buffer" },
     }),
     formatting = {
@@ -72,10 +80,14 @@ local cmp_config = {
             scrollbar = false,
         }),
         documentation = cmp.config.window.bordered({
-        winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuThumb",
         }),
     },
 }
 
 lspkind.init(lspkind_config)
 cmp.setup(cmp_config)
+require("luasnip.loaders.from_vscode").lazy_load()
+
+luasnip.filetype_extend("javascript", { "javascriptreact" })
+luasnip.filetype_extend("javascript", { "html" })
