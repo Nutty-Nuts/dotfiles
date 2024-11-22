@@ -19,6 +19,7 @@ masonlsp.setup({
         "cmake",
         "mesonlsp",
         "zls",
+        "glsl_analyzer",
         -- "asm_lsp",
     },
 })

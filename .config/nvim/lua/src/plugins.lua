@@ -141,7 +141,6 @@ local debugging = {
 
 local temp = {
     "ThePrimeagen/vim-be-good",
-    -- { "echasnovski/mini.nvim", version = false },plugin
     {
         "NeogitOrg/neogit",
         dependencies = {
@@ -154,7 +153,8 @@ local temp = {
         },
         config = true,
     },
-    { "echasnovski/mini.ai", version = "*" },
+    { "echasnovski/mini.nvim", version = "*" },
+    "eandrju/cellular-automaton.nvim",
 }
 
 require("lazy").setup({

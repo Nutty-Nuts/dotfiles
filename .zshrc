@@ -10,6 +10,8 @@ export PATH="$PREFIX/bin:$PATH"
 export PATH="$HOME/opt/cross/bin:$PATH"
 export PATH=$PATH:/home/gerardvega/.local/bin
 
+bindkey -v
+
 # Download Zinit if its is not installed
 if [ ! -d "$ZINIT_HOME" ]; then
     mkdir -p "$(dirname $ZINIT_HOME)"
@@ -64,8 +66,8 @@ alias ls='eza --all --icons=always'
 alias :q="exit"
 alias ff="fastfetch --logo ~/.local/assets/fastfetch_logo.jpg"
 alias nv="nvim"
-# alias nvf='nvim $(fzf -m --preview="highlight -O ansi --force {}")'
 alias nvf='nvim $(fzf -m --preview="bat --style=numbers --theme=base16 --color=always {}")'
+alias ..='cd ..'
 
 # custom functions/commands
 stowdots() {
@@ -125,3 +127,5 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"\
 " --color=border:$color04"\
 " --layout=reverse --highlight-line --border=rounded --prompt=▌ --header-first --multi"
+
+PATH=~/.console-ninja/.bin:$PATH

@@ -44,6 +44,7 @@ local server_configurations = {
     --     filetypes = { "asm", "vasm", "s", "S" },
     -- },
     ["tailwindcss"] = {},
+    ["glsl_analyzer"] = {},
 }
 
 for language, configurations in pairs(server_configurations) do

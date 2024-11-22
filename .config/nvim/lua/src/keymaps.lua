@@ -76,8 +76,8 @@ local binds = {
         },
 
         --- TAGBAR: Tagbar Binds
-        ["<leader>gb"] = {
-            command = ":TagbarToggle<CR>",
+        ["<leader>gg"] = {
+            command = ":TagbarToggle focus<CR>",
             desc = "Toggle Tagbar",
         },
 
