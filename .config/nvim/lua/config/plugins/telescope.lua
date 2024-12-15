@@ -37,7 +37,6 @@ return {
 			}
 
 			vim.keymap.set("n", "<leader>ff", require('telescope.builtin').find_files)
-			vim.keymap.set("n", "<leader>fg", require('telescope.builtin').live_grep)
 			vim.keymap.set("n", "<leader>fb", require('telescope.builtin').buffers)
 
 			vim.keymap.set("n", "<leader>fcg", function()
@@ -52,7 +51,9 @@ return {
 				}
 			end)
 
-			require "config.telescope.multigrep".setup()
+			vim.keymap.set("n", "<leader>fg", function()
+				require "config.telescope.multigrep".setup()
+			end)
 		end
 	}
 }

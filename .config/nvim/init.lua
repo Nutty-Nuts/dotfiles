@@ -1,31 +1,6 @@
 --- @desc INIT FOR NVIM CONFIG
 require("config.lazy")
 
-local indent = 4
-
-vim.opt.clipboard = "unnamedplus"
-
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.termguicolors = true
-
-vim.opt.smarttab = true
-vim.opt.expandtab = true
-vim.opt.shiftwidth = indent
-vim.opt.softtabstop = indent
-vim.opt.tabstop = indent
-
-vim.keymap.set("n", "<leader><leader>x", ":so<CR>")
-vim.keymap.set("n", "<leader>x", ":.lua<CR>")
-vim.keymap.set("v", "<leader>x", ":lua<CR>")
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+require("config.opts.options")
+require("config.opts.auto_commands")
+require("config.opts.keymaps")
