@@ -40,7 +40,7 @@ export const BarLayer = Bar();
 // export const BarLayerExtra = BarExtra(1);
 
 App.config({
-    iconTheme: "Colloid-Yellow-Gruvbox-Dark",
+    iconTheme: "Colloid-Teal-Everforest-Dark",
     style: css,
     windows: [
         BarLayer,
