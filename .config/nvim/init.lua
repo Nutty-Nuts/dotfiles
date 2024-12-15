@@ -1,4 +1,4 @@
---- @module INIT FOR NVIM CONFIG
+--- @desc INIT FOR NVIM CONFIG
 require("config.lazy")
 
 vim.opt.shiftwidth = 4
@@ -6,6 +6,7 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.termguicolors = true
 
 vim.keymap.set("n", "<leader><leader>x", ":so<CR>")
 vim.keymap.set("n", "<leader>x", ":.lua<CR>")
